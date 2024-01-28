@@ -1,8 +1,8 @@
 {
   "name": "svg-parse-path-normalized",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Parse svg path data from string and normalize it to calculable value arrays",
-  "main": "js/parsePathDataNormalized.js",
+  "main": "js/pathDataParseNormalized.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,6 +14,7 @@
     "svg",
     "parse-path",
     "pathdata",
+    "convert-pathdata",
     "normalize"
   ],
   "author": "herrstrietzel",

@@ -10,7 +10,7 @@
 let options = {
     normalize:false,
     toAbsolute: true,
-    unshort: true,
+    toLonghands: true,
     arcToCubic:true,
     quadraticToCubic: true,
     lineToCubic: true,
@@ -49,7 +49,7 @@ path.setAttribute('d', d)
         let defaults = {
             normalize: null,
             toAbsolute: true,
-            unshort: true,
+            toLonghands: true,
             arcToCubic: false,
             quadraticToCubic: false,
             lineToCubic: false,
@@ -60,7 +60,7 @@ path.setAttribute('d', d)
             ...defaults,
             ...options
         }
-        let { normalize, toAbsolute, unshort, arcToCubic, quadraticToCubic, lineToCubic, debug, decimals } = options;
+        let { normalize, toAbsolute, toLonghands, arcToCubic, quadraticToCubic, lineToCubic, debug, decimals } = options;
 
         /**
          * normalize:true acts as shorthand
@@ -68,7 +68,7 @@ path.setAttribute('d', d)
          */
         if (normalize === true) {
             toAbsolute = true
-            unshort = true
+            toLonghands = true
             arcToCubic = true
             quadraticToCubic = true
         }
@@ -79,7 +79,7 @@ path.setAttribute('d', d)
          */
         else if (normalize === false) {
             toAbsolute = false
-            unshort = false
+            toLonghands = false
             arcToCubic = false
             quadraticToCubic = false
             lineToCubic = false
@@ -108,7 +108,7 @@ path.setAttribute('d', d)
         let hasM = firstCommand == 'm';
         let hasQuadratics = quadraticToCubic ? /[qt]/gi.test(d) : false;
         let hasArcs = arcToCubic ? /[a]/gi.test(d) : false;
-        let hasShorthands = unshort ? /[vhst]/gi.test(d) : false;
+        let hasShorthands = toLonghands ? /[vhst]/gi.test(d) : false;
         let hasRelative = toAbsolute ? /[lcqamts]/g.test(d.substring(1, d.length - 1)) : false;
 
         // dummy pathdata for error reporting
@@ -215,8 +215,7 @@ path.setAttribute('d', d)
             }
 
             // no relative, shorthand or arc command - return current 
-            if (!normalize || (!hasRelative && !hasQuadratics && !hasShorthands && !hasArcs) ) {
-                console.log('no normalization');
+            if (normalize===false || (!hasRelative && !hasQuadratics && !hasShorthands && !hasArcs) ) {
                 comChunks.forEach((com) => {
                     pathData.push(com);
                 });
@@ -315,7 +314,7 @@ path.setAttribute('d', d)
                      */
                     let shorthandTypes = ["H", "V", "S", "T"];
 
-                    if ((unshort && shorthandTypes.includes(typeAbs)) || (arcToCubic && shorthandTypes.includes(typeAbs)) || quadraticToCubic) {
+                    if ((toLonghands && shorthandTypes.includes(typeAbs)) || (arcToCubic && shorthandTypes.includes(typeAbs)) || quadraticToCubic) {
                         let cp1X, cp1Y, cpN1X, cpN1Y, cp2X, cp2Y;
                         if (com.type === "H" || com.type === "V") {
                             com.values =
