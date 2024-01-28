@@ -1,8 +1,8 @@
 {
   "name": "svg-parse-path-normalized",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Parse svg path data from string and normalize it to calculable value arrays",
-  "main": "index.js",
+  "main": "js/parsePathDataNormalized.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
