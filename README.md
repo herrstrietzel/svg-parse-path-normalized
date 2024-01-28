@@ -73,6 +73,8 @@ parsepathDataNormalized(d)
 The above example illustrates a problem with overly "lightweight" path parsers:  
 We need an extra check to "unravel" the `A` arcto's `largeArc` and `sweep` flags, which are concatenated with the subsequent on-path x coordinate value.
 
+See [codepen demo](https://codepen.io/herrstrietzel/pen/NWJpOYR)   
+
 ## Normalization
 Normalization (admittedly a slightly ambigious term) via `parsepathDataNormalized(d)` applies by default these conversions:  
 * **imlicit or repeated** commands to explicit  
