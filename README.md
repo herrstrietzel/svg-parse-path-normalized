@@ -6,7 +6,15 @@ Parse path data from string including fine-grained normalization options. This s
 
 ``` lang-html
 <script src="https://www.unpkg.com/svg-parse-path-normalized@latest/js/pathDataParseNormalized.js"></script>
+```
 
+Load minified via jsDelvir  (6KB/3KB minified)
+```
+<!--basic parser --->
+<script src="https://cdn.jsdelivr.net/npm/svg-parse-path-normalized@1.0.2/js/pathDataParseNormalized.min.js"></script>
+```
+
+```
 <script>
 const {parsepathDataNormalized, pathDataToD} = parsepathData;
 
@@ -118,6 +126,17 @@ Set normalize to false to get the original (not normalized) pathdata – includi
  `parsepathDataNormalized(d, {normalize:false})`  
 
 
+## Stringify to back to `d` attribute string  
+
+**Options:**   
+* decimals: rounds pathdata
+* minify: omits command letters for implicit or repeated commands and leading zeros
+
+```
+pathDataToD(pathData, decimals, minify) 
+```
+
+
 ### Recommendations
 * Quadratic béziers usually provide much faster calculations/algorithms – think twice before converting to cubic.
 * `debug:true` can be handy if you need to find errors in malformed pathdata – maybe caused by manual path splitting
@@ -148,6 +167,13 @@ Load `pathDataConvert.js` to get more conversion methods. This script is intende
 ```
 <script src="https://www.unpkg.com/svg-parse-path-normalized@latest/js/pathDataConvert.js"></script>
 ```
+
+Load minified via jsDelivr  (13KB/6KB minified)
+```
+<!-- optional conversions -->
+<script src="https://cdn.jsdelivr.net/npm/svg-parse-path-normalized@1.0.2/js/pathDataConvert.min.js"></script>
+```
+
 
 ```
 //init
