@@ -1,0 +1,25 @@
+{
+  "name": "svg-parse-path-normalized",
+  "version": "1.0.0",
+  "description": "Parse svg path data from string and normalize it to calculable value arrays",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/herrstrietzel/svg-parse-path-normalized.git"
+  },
+  "keywords": [
+    "svg",
+    "parse-path",
+    "pathdata",
+    "normalize"
+  ],
+  "author": "herrstrietzel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/herrstrietzel/svg-parse-path-normalized/issues"
+  },
+  "homepage": "https://github.com/herrstrietzel/svg-parse-path-normalized#readme"
+}
