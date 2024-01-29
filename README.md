@@ -197,7 +197,7 @@ Currently, the  W3C draft for the SVGPathData interface is not supported by any 
 **This polyfill is a "battle-proof" parser!** Since the W3C draft doesn't  include fine-grained control over the normalisation/conversion process you can use the `pathDataConvert.js` script as an addon/plugin  alongside with the aforementioned polyfill script.
 
 ### Convert pathdata structure
-A lot of libraries use a array structure for each command like so
+A lot of libraries use an array structure for each command like so
 
 ```
 [
