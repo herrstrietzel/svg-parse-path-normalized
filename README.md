@@ -1,5 +1,12 @@
 # svg-parse-path-normalized
-Parse path data from string including fine-grained normalization options. This script aims to provide a performant and compact parser – respecting all possible minified/shorthand notations.
+Parse path data from string including *fine-grained* normalisation options.  
+This library aims to provide a performant yet compact parser – respecting all possible minified/shorthand notations as a basis for all kinds of custom path manipulations.
+
+In other words: **this library focuses on the parsing and conversion** (input and final output) part:  
+* **step1 – parse** – parse the path to a calculable data set
+* **step2 – your turn!** – process the path data whatever you like
+* **step3 – write back**  – a stringified `d` attribute (maybe optimized/minified)
+
 
 ## Usage 
 **Browser**
@@ -8,7 +15,7 @@ Parse path data from string including fine-grained normalization options. This s
 <script src="https://www.unpkg.com/svg-parse-path-normalized@latest/js/pathDataParseNormalized.js"></script>
 ```
 
-Load minified via jsDelvir  (6KB/3KB minified)
+**Optional: Load minified script via jsDelivr  (6KB/3KB minified)**
 ```
 <!--basic parser --->
 <script src="https://cdn.jsdelivr.net/npm/svg-parse-path-normalized@1.0.2/js/pathDataParseNormalized.min.js"></script>
@@ -56,8 +63,6 @@ console.log(dNew);
 
 ```
 
-
-
 ## Pathdata format/structure
 
 This library uses the pathdata format as suggested in the [w3C SVGPathData interface draft](https://svgwg.org/specs/paths/#InterfaceSVGPathData).
@@ -83,7 +88,7 @@ We need an extra check to "unravel" the `A` arcto's `largeArc` and `sweep` flags
 
 See [codepen demo](https://codepen.io/herrstrietzel/pen/NWJpOYR)   
 
-## Normalization
+## Normalization or basic conversions to computable data
 Normalization (admittedly a slightly ambigious term) via `parsepathDataNormalized(d)` applies by default these conversions:  
 * **imlicit or repeated** commands to explicit  
    e.g `m 0 0 .5.5.5.5` to `M 0 0 l 0.5 0.5 l 0.5 0.5`
@@ -144,7 +149,7 @@ pathDataToD(pathData, decimals, minify)
 
 ----
 
-## More conversions
+## More conversions via pathDataConvert.js
 Load `pathDataConvert.js` to get more conversion methods. This script is intended to provide various conversions to optimize the path data after processing e.g for a minified path output.  
 
 | parameter | default | effect |
@@ -174,7 +179,6 @@ Load minified via jsDelivr  (13KB/6KB minified)
 <script src="https://cdn.jsdelivr.net/npm/svg-parse-path-normalized@1.0.2/js/pathDataConvert.min.js"></script>
 ```
 
-
 ```
 //init
 const {convertPathData, quadratic2Cubic, roundPathData, pathDataToRelative, pathDataToAbsolute, pathDataToLonghands, pathDataToShorthands, pathDataToQuadratic, cubicToQuad, arcToBezier, pathDataToVerbose, convertArrayPathData, revertPathDataToArray, svgArcToCenterParam} = pathDataConvert;
@@ -187,6 +191,10 @@ let pathDataCon = pathData.convert(options)
 * chainable prototype method `convert(options)` to apply all conversions at once
 * separate chainable methods like `pathData.toAbsolute()`, `pathData.toRelative()`, `pathData.toLonghands()`,  `pathData.toShorthands()`, `pathData.round()`, `pathData.toQuadratic()`, `pathData.toVerbose()`
 * individual functions like `pathDataToAbsolute(pathData)`, `pathDataToRelative(pathData)`, `pathDataToShorthands(pathData)`, `pathDataToShorthands(pathData)`, `pathDataToQuadratic(pathData)`, `roundPathData(pathData)`
+
+### `pathDataConvert.js` as an addon/plugin for `getPathData()`
+Currently, the  W3C draft for the SVGPathData interface is not supported by any major browser. Fortunately Jarek Foksa wrote a this [great polyfill library](https://github.com/jarek-foksa/path-data-polyfill) and also contributed to the potential spec outcome – most importantly that it should include geometry elements like `circle`, `rect`, `polygon`, `line` to retrieve path data.  
+**This polyfill is a "battle-proof" parser!** Since the W3C draft doesn't  include fine-grained control over the normalisation/conversion process you can use the `pathDataConvert.js` script as an addon/plugin  alongside with the aforementioned polyfill script.
 
 ### Convert pathdata structure
 A lot of libraries use a array structure for each command like so

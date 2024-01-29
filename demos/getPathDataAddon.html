@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parse pathdata – convert plugin</title>
+
+
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        svg {
+            width: 100%;
+            overflow: visible;
+            border: 1px solid #ccc;
+        }
+
+        .grd {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2em;
+            height: 95vh;
+        }
+
+        .col {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            justify-content: flex-start;
+        }
+
+        .col>* {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        textarea {
+            width: 100%;
+            display: block;
+            min-height: 10em;
+            flex: 1 1 auto;
+            resize: vertical;
+        }
+
+        input {}
+
+        input[type="range"] {
+            width: 100%;
+            display: block;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 0.5em;
+        }
+
+
+        label {
+            display: inline-block;
+            line-height: 1.4em;
+            margin: 0;
+            margin-right: 0.5em;
+        }
+
+        code {
+            background: #eee;
+            display: block;
+            padding: 0.5em;
+        }
+
+        #pErrors {
+            font-weight: 700;
+            color: red;
+        }
+
+        input[type="number"] {
+            width: 4em;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="grd">
+        <div class="col">
+            <svg id="svg" viewBox="0 0 100 100">
+                <path id="path" fill="none" stroke="black" d="M3,7 
+                L13,7 
+                m-20,10 
+                l10,0 
+                V27 
+                H23 
+                v10 
+                h10
+                C 33,43 38,47 43,47 
+                c 0,5 5,10 10,10
+                S 63,67 63,67       
+                s -10,10 10,10
+                Q 50,50 73,57
+                q 20,-5 0,-10
+                T 70,40
+                t 0,-15
+                A 5, 10 45 10 40,20  
+                a5,5 20 01 -10,-10
+                Z
+          " />
+                <path id="path2" fill="none" stroke="green" stroke-width="0.5" />
+            </svg>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/path-data-polyfill@1.0.4/path-data-polyfill.min.js"></script>
+    <script src="../js/pathDataConvert.js"></script>
+
+    <script>
+
+        const pathData= path.getPathData().convert({toRelative:true, toShorthands:true, decimals: 1 })
+        path2.setPathData(pathData);
+        console.log(pathData);
+      
+    </script>
+
+
+</body>
+
+</html>
