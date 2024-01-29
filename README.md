@@ -167,6 +167,8 @@ Load `pathDataConvert.js` to get more conversion methods. This script is intende
 | normalize | *null* , true, false | shorthand to also convert arcs and quadratic béziers to cubic – similar to the W3C draft's suggested `getPathData({normalize:true})` parameter |  
 | optimize | *false* | shorthand to convert to shorthands, relative and round to 3 decimals for a more compact output |  
 
+
+
 ### Usage
 
 ```
