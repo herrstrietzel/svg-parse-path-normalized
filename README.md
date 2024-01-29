@@ -161,7 +161,7 @@ Load `pathDataConvert.js` to get more conversion methods. This script is intende
 | arcToCubic | *false* | convert arcs `A` commands to cubic béziers |
 | lineToCubic | *false* | convert all `L` linetos to cubic béziers (handy for morphing animations) |
 | quadraticToCubic | *false* | convert quadratic to cubic béziers |
-| cubicToQuadratic | true | convert all cubic to quadratic |
+| cubicToQuadratic | *false* | convert all cubic to quadratic |
 | cubicToQuadraticPrecision | 0.1 | cubic to quadratic accuracy |
 | decimals | *-1* | round values to floating point decimals. -1=no rounding |
 | normalize | *null* , true, false | shorthand to also convert arcs and quadratic béziers to cubic – similar to the W3C draft's suggested `getPathData({normalize:true})` parameter |  
