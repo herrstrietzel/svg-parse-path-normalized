@@ -18,12 +18,11 @@ In other words: **this library focuses on the parsing and conversion** (input an
 **Optional: Load minified script via jsDelivr  (6KB/3KB minified)**
 ```
 <!--basic parser --->
-<script src="https://cdn.jsdelivr.net/npm/svg-parse-path-normalized@1.0.2/js/pathDataParseNormalized.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/svg-parse-path-normalized@1.0.3/js/pathDataParseNormalized.min.js"></script>
 ```
 
 ```
 <script>
-const {parsepathDataNormalized, pathDataToD} = parsepathData;
 
 //parse
 const d ="m 0 0 .5.5.5.5a 5 10 45 1040 20" ;
@@ -176,16 +175,16 @@ Load `pathDataConvert.js` to get more conversion methods. This script is intende
 Load minified via jsDelivr  (13KB/6KB minified)
 ```
 <!-- optional conversions -->
-<script src="https://cdn.jsdelivr.net/npm/svg-parse-path-normalized@1.0.2/js/pathDataConvert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/svg-parse-path-normalized@latest/js/pathDataConvert.min.js"></script>
 ```
 
 ```
-//init
-const {convertPathData, quadratic2Cubic, roundPathData, pathDataToRelative, pathDataToAbsolute, pathDataToLonghands, pathDataToShorthands, pathDataToQuadratic, cubicToQuad, arcToBezier, pathDataToVerbose, convertArrayPathData, revertPathDataToArray, svgArcToCenterParam} = pathDataConvert;
 
 let options = {arcToCubic:true, toRelative:true, decimals:0}
 let pathDataCon = pathData.convert(options)
 ```
+
+### Demo: [convert pathdata](https://codepen.io/herrstrietzel/pen/JjzvRjb)
 
 **Conversion can be applied via**
 * chainable prototype method `convert(options)` to apply all conversions at once
@@ -194,7 +193,7 @@ let pathDataCon = pathData.convert(options)
 
 ### `pathDataConvert.js` as an addon/plugin for `getPathData()`
 Currently, the  W3C draft for the SVGPathData interface is not supported by any major browser. Fortunately Jarek Foksa wrote a this [great polyfill library](https://github.com/jarek-foksa/path-data-polyfill) and also contributed to the potential spec outcome – most importantly that it should include geometry elements like `circle`, `rect`, `polygon`, `line` to retrieve path data.  
-**This polyfill is a "battle-proof" parser!** Since the W3C draft doesn't  include fine-grained control over the normalisation/conversion process you can use the `pathDataConvert.js` script as an addon/plugin  alongside with the aforementioned polyfill script.
+**This polyfill is a "battle-proof" parser!** Since the W3C draft doesn't  include fine-grained control over the normalisation/conversion process you can use the `pathDataConvert.js` script as an addon/plugin  alongside with the aforementioned polyfill script. (See Demo/getPathDataAddon.html)
 
 ### Convert pathdata structure
 A lot of libraries use an array structure for each command like so
