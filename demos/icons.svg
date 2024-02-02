@@ -1,0 +1,275 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="svgIconAssets"
+    viewBox="0 0 7241.913 100" style="position:absolute; width:0; height:0; overflow:hidden" aria-hidden="true">
+
+
+    <symbol viewBox="0 0 112 100" id="icn-print">
+        <path fill="none" stroke="currentColor"
+            d="M78.4 79.5h22.9v-39.5c0-5.9-4.8-10.8-10.8-10.8h-70c-5.9 0-10.8 4.8-10.8 10.8v39.5h22.9"
+            pathLength="100" />
+        <path fill="none" stroke="currentColor"
+            d="M32.7 29.2v-8.5c0-5.9 4.8-10.8 10.8-10.8h24.2c5.9 0 10.8 4.8 10.8 10.8v8.5" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M32.7 54h45.8v41h-45.8v-41z" pathLength="100" />
+    </symbol>
+
+
+    <symbol viewBox="0 0 100 100" id="icn-arrow-down">
+        <path fill="none" stroke="currentColor" d="M50 90v-80" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M90 50l-40 40l-40-40" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 100 100" id="icn-arrow-left">
+        <path fill="none" stroke="currentColor" d="M0 55h80" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M40 95l-40-40l40-40" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 100 100" id="icn-arrow-right">
+        <path fill="none" stroke="currentColor" d="M0 55h80" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M40 15l40 40l-40 40" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 100 100" id="icn-arrow-up">
+        <path fill="none" stroke="currentColor" d="M50 15v80" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M10 55l40-40l40 40" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 81 100" id="icn-arrow-up-left">
+        <path fill="none" stroke="currentColor" d="M10 30l60 60" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M10 90v-60h60" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 80 100" id="icn-arrow-up-right">
+        <path fill="none" stroke="currentColor" d="M70 30l-60 60" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M10 30h60v60" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 100 100" id="icn-calendar">
+        <path fill="none" stroke="currentColor" stroke-linejoin="round" d="M10 22h80v63h-80v-63z" pathLength="100" />
+        <path fill="none" stroke="currentColor" stroke-linecap="round" d="M30 22.6v-17.4" pathLength="100" />
+        <path fill="none" stroke="currentColor" stroke-linecap="round" d="M70 22.6v-17.4" pathLength="100" />
+        <path fill="none" stroke="currentColor" stroke-linecap="round" d="M10 31h80" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 91 100" id="icn-chevron-double-down">
+        <path fill="none" stroke="currentColor" d="M80.5 51.8l-35.2 35.2l-35.2-35.2" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M80.5 12l-35.2 35.2l-35.2-35.2" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 95 100" id="icn-chevron-down">
+        <path id="chevron-down" fill="none" stroke="currentColor" d="M85 32l-37.5 37.5l-37.5-37.5" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 58 100" id="icn-chevron-left">
+        <path id="chevron-left" fill="none" stroke="currentColor" d="M47.5 90l-37.5-37.5l37.5-37.5" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 58 100" id="icn-chevron-right">
+        <path id="chevron-right" fill="none" stroke="currentColor" d="M10 15l37.5 37.5l-37.5 37.5" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 95 100" id="icn-chevron-up">
+        <path id="chevron-up" fill="none" stroke="currentColor" d="M10 69.5l37.5-37.5l37.5 37.5" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 100 100" id="icn-clock">
+        <path fill="none" stroke="currentColor"
+            d="M90 50a40 40 0 0 1-40 40a40 40 0 0 1-40-40a40 40 0 0 1 40-40a40 40 0 0 1 40 40z" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M50 28.1v21.9l14.8 14.8" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 100 100" id="icn-close">
+        <path fill="none" stroke="currentColor" d="M90 10l-80 80" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M90 90l-80-80" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 100 100" id="icn-download">
+        <path fill="none" stroke="currentColor" d="M50 67.3v-62.3" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M10 85h80" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M89.6 31.3l-39.6 36l-39.6-36" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 100 100" id="icn-envelope">
+        <path fill="none" stroke="currentColor" stroke-linejoin="round" d="M10 20h80v65h-80v-65z" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M10 36.7l40 20.3l40-20.3" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 100 100" id="icn-exclamation-mark">
+        <path fill="none" stroke="currentColor"
+            d="M90 50a40 40 0 0 1-40 40a40 40 0 0 1-40-40a40 40 0 0 1 40-40a40 40 0 0 1 40 40z" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M50 55.6v-32.4" pathLength="100" />
+        <path id="lin-dotbg_2_" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+            stroke-dasharray="0,0" d="M50 68.6l0 0" pathLength="100" />
+        <path fill="none" stroke="currentColor"
+            d="M50 66.2c1.3 0 2.4 1.1 2.4 2.4s-1.1 2.4-2.4 2.4s-2.4-1.1-2.4-2.4s1.1-2.4 2.4-2.4z" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 62 100" id="icn-facebook">
+        <path id="facebook"
+            d="M37.8 23.2h12.8v-15.4h-12.8c-9.9 0-17.9 8-17.9 17.9v7.7h-10.3v15.4h10.3v41h15.3v-41h12.9l2.5-15.4h-15.4v-7.7c0-1.4 1.2-2.5 2.6-2.5l0 0z"
+            stroke="none" fill="currentColor" />
+    </symbol>
+    <symbol viewBox="0 0 104 100" id="icn-facebook-circle">
+        <path id="facebook-circle"
+            d="M92.8 48.4c0-5.8-1.1-11.2-3.2-16.2s-5.1-9.4-9-13.2c-3.8-3.9-8.2-6.9-13.2-9s-10.5-3.2-16.2-3.2s-11.1 1.1-16.2 3.2c-5 2.2-9.4 5.1-13.2 9s-6.9 8.2-9 13.2s-3.2 10.5-3.2 16.2c0 5.1 0.8 9.9 2.4 14.4s4 8.5 7.1 12.2s6.6 6.7 10.6 9.2s8.4 4.2 13 5.1v-28.4h-8.1v-12.5h8.1v-10.3c0-2.8 0.7-5.3 2.1-7.5s3.2-3.9 5.3-5.2s4.6-2 7.3-2h10.3v12.5h-8.1c-1.2 0-2.2 0.4-3 1.3s-1.4 1.8-1.4 2.8v8.4h12.5v12.5h-12.5v29c5.4-0.6 10.3-2 14.9-4.4c4.6-2.3 8.5-5.3 11.9-9.1s6-7.9 7.9-12.7s2.8-9.8 2.8-15.3z"
+            stroke="none" fill="currentColor" />
+    </symbol>
+    <symbol viewBox="0 0 102 100" id="icn-facebook-square">
+        <path id="facebook-square"
+            d="M83.9 8.4h-66.2c-4.2 0-7.6 3.4-7.6 7.6v66.2c0 4.2 3.4 7.6 7.6 7.6h33.1v-35.7h-10.2v-10.2h10.2v-5c0-8.5 6.8-15.3 15.3-15.3h10.2v10.2h-10.2c-2.9 0-5.1 2.3-5.1 5.1v5h15.3l-2.5 10.2h-12.8v35.7h22.9c4.2 0 7.6-3.4 7.6-7.6v-66.2c0-4.2-3.4-7.6-7.6-7.6z"
+            stroke="none" fill="currentColor" />
+    </symbol>
+    <symbol viewBox="0 0 72 100" id="icn-female">
+        <path fill="none" stroke="currentColor"
+            d="M62 41a26 26 0 0 1-26 26a26 26 0 0 1-26-26a26 26 0 0 1 26-26a26 26 0 0 1 26 26z" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M36 67v33" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M20.3 85h31.5" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 71 100" id="icn-file">
+        <path fill="none" stroke="currentColor" d="M60 85h-50.8v-70h28.7l22 22z" pathLength="100" />
+        <path fill="none" stroke="currentColor" stroke-linejoin="round" d="M60 37h-22v-22z" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 96 100" id="icn-github-outine">
+        <path id="github-outine"
+            d="M79.9 25.4c1.2-4.7 0.8-9.5-1-13.8c-0.4-1-1.2-1.7-2.2-1.9c-1.2-0.4-6-1.1-15.3 4.7c-8-1.8-15.9-1.7-23.3 0c-9.3-5.9-14-5.2-15.3-4.7s-1.8 1-2.2 1.9c-1.9 4.5-2.2 9.4-1 13.8c-3.2 4.1-4.8 9.1-4.8 14c0 12.7 4.9 20 12.1 24c2.6 1.4 5.4 2.4 8.2 3c-0.6 1.7-1 3.4-1 5.2c0 0.4 0 1 0 1.4v0.3c-3 0.6-5.1 0.4-6.6-0.1c-0.8-0.2-1.5-0.6-2.1-1c-1.5-1-2.5-2.4-3.9-4c-1.2-1.7-3-3.9-5.4-5.2c-0.7-0.3-1.4-0.6-2.1-0.8c-1.9-0.4-3.8 0.7-4.3 2.5c-0.4 1.9 0.7 3.8 2.5 4.3c0.3 0.1 0.5 0.2 0.5 0.2c1 0.5 1.7 1.4 3.2 3.3c1.3 1.7 3 3.8 5.4 5.5c1.1 0.8 2.5 1.5 4 2c2.5 0.8 5.4 1 8.7 0.5v6.1c0 1.9 1.6 3.5 3.5 3.5s3.5-1.6 3.5-3.5v-13.5c0-0.1 0-0.2 0-0.3s0-0.5 0-0.9c0.1-1.9 0.8-3.9 2.3-5.4c0.5-0.5 0.9-1.2 1-2c0.3-1.9-1.1-3.7-3-3.9c-1.2-0.1-2.4-0.3-3.6-0.5c-2.7-0.5-5.2-1.3-7.5-2.5c-4.5-2.5-8.3-7.3-8.4-17.7c0.1-4.4 1.5-8.1 4.3-11.1c0.9-1 1.2-2.4 0.7-3.6c-1-2.6-1.1-5.5-0.4-8.4c1.7 0.3 4.7 1.5 9.3 4.5c0.8 0.6 1.8 0.8 2.9 0.5c7-2 14.8-2.1 22.6 0c0.9 0.3 1.9 0.1 2.8-0.5c4.5-3 7.6-4.1 9.3-4.5c0.7 2.7 0.5 5.6-0.4 8.4c-0.5 1.2-0.3 2.6 0.7 3.6c2.6 2.8 4.3 6.6 4.3 10.8c0 10.8-3.9 15.6-8.6 18c-2.2 1.2-4.7 1.9-7.4 2.4c-1.1 0.3-2.3 0.3-3.4 0.5c-0.7 0.1-1.5 0.4-2 1c-1.4 1.3-1.5 3.6-0.1 5c0.2 0.2 0.4 0.4 0.6 0.7c1.2 1.6 1.8 3.6 1.7 5.7c0 0.1 0 0.2 0 0.3v13.5c0 1.9 1.6 3.5 3.5 3.5s3.5-1.6 3.5-3.5v-13.3c0.2-2.4-0.2-4.6-1-6.7c2.7-0.6 5.5-1.5 8-2.9c7.3-3.9 12.2-11.4 12.2-24.2c0-5.2-1.8-10.1-4.8-13.9z"
+            stroke="none" fill="currentColor" />
+    </symbol>
+    <symbol viewBox="0 0 106 100" id="icn-github-solid">
+        <path id="github-solid"
+            d="M51.9 6.9c-23.5 0-42.5 19-42.5 42.5c0 18.8 12.2 34.7 29.1 40.3c2.1 0.4 2.9-1 2.9-2s-0.1-4.4-0.1-8c-11.8 2.6-14.3-5-14.3-5c-1.9-4.9-4.7-6.2-4.7-6.2c-3.9-2.6 0.3-2.5 0.3-2.5c4.3 0.3 6.6 4.4 6.6 4.4c3.8 6.5 9.9 4.6 12.4 3.5c0.4-2.7 1.5-4.6 2.6-5.7c-9.4-1.1-19.4-4.7-19.4-21c0-4.6 1.7-8.4 4.4-11.4c-0.4-1.1-1.8-5.3 0.4-11.2c0 0 3.6-1.1 11.7 4.4c3.3-1 7-1.4 10.6-1.5s7.3 0.5 10.6 1.5c8.2-5.5 11.8-4.4 11.8-4.4c2.3 5.9 0.8 10.2 0.3 11.2c2.7 3 4.4 6.8 4.4 11.4c0 16.4-9.9 20-19.4 21c1.5 1.3 2.9 3.9 2.9 7.8c0 5.7-0.1 10.3-0.1 11.7c0 1.1 0.8 2.5 2.9 2c16.9-5.6 29.1-21.6 29.1-40.3c0-23.5-19-42.5-42.5-42.5l0 0z"
+            stroke="none" fill="currentColor" />
+    </symbol>
+    <symbol viewBox="0 0 114 100" id="icn-heart">
+        <path id="heart" fill="none" stroke="currentColor"
+            d="M104 33.4c0-12.9-10.5-23.4-23.5-23.4s-23.5 10.5-23.5 23.4c0-12.9-10.5-23.4-23.5-23.4s-23.5 10.5-23.5 23.4c0 26.6 47 56.6 47 56.6s47-29.9 47-56.6z"
+            pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 110 100" id="icn-home">
+        <path fill="none" stroke="currentColor" d="M28.6 90v-53.5" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M81.4 36.5v53.5" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M10 55.6l45-45.6l45 45.6" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 100 100" id="icn-info">
+        <path id="lin-dotbg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+            stroke-dasharray="0,0" d="M50.6 29l0 0" pathLength="100" />
+        <path fill="none" stroke="currentColor"
+            d="M90 50a40 40 0 0 1-40 40a40 40 0 0 1-40-40a40 40 0 0 1 40-40a40 40 0 0 1 40 40z" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M39.4 68.6h24.4" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M39.4 47.2h12.1v21.4" pathLength="100" />
+        <path fill="none" stroke="currentColor"
+            d="M53.1 29a2.4 2.4 0 0 1-2.4 2.4a2.4 2.4 0 0 1-2.4-2.4a2.4 2.4 0 0 1 2.4-2.4a2.4 2.4 0 0 1 2.4 2.4z"
+            pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 105 100" id="icn-instagram-outline">
+        <path id="instagram-outline"
+            d="M32.9 6.3c-6.3 0-12 2.6-16.2 6.7s-6.7 9.9-6.7 16.2v38.2c0 6.3 2.6 12 6.7 16.2s9.9 6.7 16.2 6.7h38.2c6.3 0 12-2.6 16.2-6.7s6.7-9.9 6.7-16.2v-38.2c0-6.3-2.6-12-6.7-16.2s-9.9-6.7-16.2-6.7h-38.2zm0 7.6h38.2c4.2 0 8 1.7 10.8 4.5s4.5 6.6 4.5 10.8v38.2c0 4.2-1.7 8-4.5 10.8s-6.6 4.5-10.8 4.5h-38.2c-4.2 0-8-1.7-10.8-4.5s-4.5-6.6-4.5-10.8v-38.2c0-4.2 1.7-8 4.5-10.8s6.6-4.5 10.8-4.5zm38.2 31.4c-0.6-3.7-2.2-7.1-4.6-9.8c-2.9-3.2-6.9-5.5-11.6-6.3c-1.7-0.2-3.6-0.3-5.6 0c-5.2 0.8-9.5 3.6-12.5 7.5s-4.3 9-3.5 14.2s3.6 9.5 7.5 12.5c3.9 3 8.9 4.3 14.1 3.5s9.6-3.6 12.5-7.5s4.4-9 3.6-14.1zm-7.6 1.1c0.5 3.1-0.4 6.1-2.1 8.5s-4.4 4-7.5 4.5s-6.1-0.4-8.5-2.1s-4-4.4-4.5-7.5s0.4-6.1 2.1-8.5s4.4-4.1 7.5-4.5c1.2-0.2 2.4-0.2 3.3 0c2.9 0.4 5.3 1.7 7 3.7c1.4 1.6 2.4 3.6 2.7 5.9zm9.5-15.4c2.1 0 3.8-1.7 3.8-3.8s-1.7-3.8-3.8-3.8s-3.8 1.7-3.8 3.8c0 2.1 1.7 3.8 3.8 3.8z"
+            stroke="none" fill="currentColor" />
+    </symbol>
+    <symbol viewBox="0 0 87 100" id="icn-male">
+        <path fill="none" stroke="currentColor"
+            d="M62 64a26 26 0 0 1-26 26a26 26 0 0 1-26-26a26 26 0 0 1 26-26a26 26 0 0 1 26 26z" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M54.4 45.6l22.6-22.6" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M50 23h27v27" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 77 100" id="icn-map-marker">
+        <path fill="none" stroke="currentColor"
+            d="M66.3 42.7c0 24.9-28.1 46.3-28.1 46.3s-28.1-21.4-28.1-46.3c0-15.8 10.2-28.7 28.1-28.7s28.1 12.8 28.1 28.7z"
+            pathLength="100" />
+        <path id="lin-dotbg_3_" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+            stroke-dasharray="0,0" d="M38.1 44.9h0.4" pathLength="100" />
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+            d="M40.9 44.9a2.8 2.8 0 0 1-2.8 2.8a2.8 2.8 0 0 1-2.8-2.8a2.8 2.8 0 0 1 2.8-2.8a2.8 2.8 0 0 1 2.8 2.8z"
+            pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 120 100" id="icn-navicon">
+        <path fill="none" stroke="currentColor" d="M110 50h-100" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M110 15h-100" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M110 85h-100" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 86 100" id="icn-new-tab">
+        <path fill="none" stroke="currentColor" d="M76 20l-45.5 45.5" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M31.3 20h44.7v44.7" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M76 84.8h-66v-64.9" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 77 100" id="icn-phone-alt">
+        <path fill="none" stroke="currentColor" stroke-linejoin="round"
+            d="M26.9 81.1l21.4-12.3l16.7 16.4c-14.6 8.4-38.6 3.2-50.3-17.1s-4.3-43.6 10.3-52.1l6.4 22.4l-22 12.7"
+            pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 82 100" id="icn-phone">
+        <path fill="none" stroke="currentColor" stroke-linejoin="round"
+            d="M28.6 81.4l29.4-17l12.3 21.4c-16 9.3-42.3 3.5-55.1-18.7s-4.7-47.8 11.3-57l12.3 21.4l-29.4 17"
+            pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 96 100" id="icn-plus">
+        <path fill="none" stroke="currentColor" d="M47.5 15v75" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M85 52.5h-75" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 100 100" id="icn-question">
+        <path fill="none" stroke="currentColor"
+            d="M90 50a40 40 0 0 1-40 40a40 40 0 0 1-40-40a40 40 0 0 1 40-40a40 40 0 0 1 40 40z" pathLength="100" />
+        <path fill="none" stroke="currentColor"
+            d="M39.9 38.9c0-5.6 4.5-10.1 10.1-10.1s10.1 4.5 10.1 10.1c0 5.6-4.5 10.1-10.1 10.1v10.2" pathLength="100" />
+        <path id="lin-dotbg_1_" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+            stroke-dasharray="0,0" d="M50 70.1l0 0" pathLength="100" />
+        <path fill="none" stroke="currentColor"
+            d="M52.4 70.1a2.4 2.4 0 0 1-2.4 2.4a2.4 2.4 0 0 1-2.4-2.4a2.4 2.4 0 0 1 2.4-2.4a2.4 2.4 0 0 1 2.4 2.4z"
+            pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 112 100" id="icn-reload">
+        <path fill="none" stroke="currentColor" d="M10 90v-30.2h28.3" pathLength="100" />
+        <path fill="none" stroke="currentColor"
+            d="M96.7 54.9c0 6.9-3.8 16.3-10.4 23c-7.3 7.4-17.4 12.1-28.6 12.1c-28 0-37.6-22.5-45.3-30.2"
+            pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M102 10v30.2h-28.3" pathLength="100" />
+        <path fill="none" stroke="currentColor"
+            d="M14.9 45.1c0-6.9 3.8-16.3 10.4-23c7.3-7.4 17.4-12.1 28.6-12.1c28 0 37.6 22.5 45.3 30.2"
+            pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 108 100" id="icn-reload2">
+        <path fill="none" stroke="currentColor"
+            d="M96.1 41.2c-13.4-13.4-22.4-30.2-46.6-30.2c-22.1 0-40 17.9-40 40s17.9 40 40 40c11.2 0 21.3-4.7 28.6-12.1c5.7-5.7 9.5-15 9.5-18.1"
+            pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M97 11.6v29.6h-28.4" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 95 100" id="icn-search">
+        <path fill="none" stroke="currentColor"
+            d="M39 75c-16.6 0-30-13.4-30-30s13.4-30 30-30s30 13.4 30 30s-13.4 30-30 30z" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M60.2 66.2l23.8 23.8" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 97 100" id="icn-stackoverflow">
+        <path id="stackoverflow"
+            d="M86.5 56.2v28.9h-77v-28.9h9.6v19.2h57.7v-19.2h9.7zm-62.5 4.8h48.1v9.6h-48.1v-9.6zm1.1-10.5l2.1-9.4l47 10.4l-2.1 9.4l-47-10.5zm5.5-19.3l4-8.7l43.6 20.3l-4 8.7l-43.6-20.3zm53.5 4l-5.9 7.6l-38.1-29.2l4.2-5.6h4.4l35.4 27.1z"
+            stroke="none" fill="currentColor" />
+    </symbol>
+    <symbol viewBox="0 0 105 100" id="icn-star">
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+            d="M52.1 10l13 26.3l29.1 4.2l-21 20.5l5 28.9l-26-13.7l-26 13.7l5-28.9l-21-20.5l29.1-4.2z"
+            pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 105 100" id="icn-star_solid">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+            d="M52.1 10l13 26.3l29.1 4.2l-21 20.5l5 28.9l-26-13.7l-26 13.7l5-28.9l-21-20.5l29.1-4.2z" pathLength="100"
+            fill="currentColor" />
+    </symbol>
+    <symbol viewBox="0 0 122 100" id="icn-twitter">
+        <path id="twitter"
+            d="M111.6 16c-3.8 1.7-7.8 2.8-12.1 3.4c4.4-2.6 7.7-6.7 9.2-11.5c-4 2.3-8.5 4.1-13.2 5c-3.9-4.1-9.2-6.6-15.3-6.6c-11.4 0-20.9 9.3-20.9 20.9c0 1.7 0.2 3.3 0.6 4.7c-17.4-0.8-32.8-9.1-43-21.8c-1.8 3.1-2.8 6.7-2.8 10.5c0 7.2 3.7 13.6 9.2 17.4c-3.4-0.1-6.6-1-9.4-2.6c0 0.1 0 0.2 0 0.3c0 10.1 7.2 18.6 16.8 20.5c-1.8 0.4-3.7 0.7-5.6 0.7c-1.4 0-2.6-0.2-3.9-0.4c2.6 8.3 10.4 14.4 19.5 14.5c-7.2 5.7-16.2 9-26 9c-1.7 0-3.3-0.1-4.9-0.3c9.2 5.9 20.3 9.3 32 9.3c38.4 0 59.4-31.8 59.4-59.4c0-0.9 0-1.8-0.1-2.7c4.1-2.9 7.7-6.6 10.5-10.8z"
+            stroke="none" fill="currentColor" />
+    </symbol>
+    <symbol viewBox="0 0 120 100" id="icn-twitter-outline">
+        <path id="twitter-outline"
+            d="M96.5 20.9c-0.7 1-1.6 2-2.5 2.9s-1.5 2.4-1.1 3.9c0.1 0.7 0.2 1.7 0.2 2.6c0 21.8-10.1 37.4-24.1 45.4c-11 6.2-24.8 8.1-38.4 4.7c5.2-1.6 10.2-3.8 14.9-7.1c0.6-0.4 1.1-1 1.6-1.8c0.8-2.1-0.1-4.6-2.2-5.5c-11.5-5.1-17.2-12.2-19.9-19c-1.7-4.6-2.2-9.2-2.1-13.4c0-3.4 0.5-6.6 1.1-9.2c1.7 1.5 3.3 3 5.1 4.4c8.5 6.6 19.2 10.3 30.8 10c2.3 0 4.1-1.9 4.1-4.2v-4.2c0-0.7 0-1.6 0.1-2.3c0.5-3.3 2.2-6.4 4.9-8.8c3-2.6 6.8-3.8 10.5-3.5s7.3 1.9 9.9 4.9c1 1.2 2.7 1.8 4.4 1.4c0.9-0.3 1.9-0.6 2.8-0.9v-0.1zm6.7-12.8c-3.1 2.2-6.3 3.8-9.6 5.1c-3.9-3.5-8.6-5.5-13.6-5.8c-5.7-0.4-11.8 1.5-16.5 5.5c-4.3 3.7-6.9 8.8-7.6 14c-0.1 1.1-0.2 2.3-0.2 3.3c-8-0.5-15.4-3.5-21.4-8.2c-3.2-2.4-6-5.4-8.4-8.7c-1.4-1.9-4-2.3-5.8-1c-0.6 0.5-1.1 1-1.5 1.8c0 0-0.5 1.2-1.1 3.1c-0.4 1.5-1 3.2-1.5 5.4c-0.7 3-1.2 6.7-1.4 10.7c-0.1 5.1 0.5 10.8 2.7 16.5c2.8 7.4 8.1 14.6 17.3 20.1c-6.6 3-13.5 4.4-20.3 4.1c-2.3-0.1-4.3 1.7-4.4 4c-0.1 1.7 0.8 3.1 2.2 3.8c20.4 11.3 43.4 11.1 61 1c16.9-9.6 28.4-27.9 28.4-52.5c0-0.7 0-1.4-0.1-2.1c4.2-4.6 7-10.1 8.3-15.7c0.5-2.2-0.8-4.5-3.1-5c-1.1-0.3-2.4 0-3.3 0.6z"
+            stroke="none" fill="currentColor" />
+    </symbol>
+    <symbol viewBox="0 0 85 100" id="icn-user">
+        <path fill="none" stroke="currentColor" d="M10 90c0-17.7 14.4-32.1 32.1-32.1s32.1 14.4 32.1 32.1"
+            pathLength="100" />
+        <path fill="none" stroke="currentColor"
+            d="M58.1 26a16 16 0 0 1-16 16a16 16 0 0 1-16-16a16 16 0 0 1 16-16a16 16 0 0 1 16 16z" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 78 100" id="icn-wheelchair">
+        <path id="circleBG"
+            d="M40.6 12.4a2.4 2.4 0 0 1-2.4 2.4a2.4 2.4 0 0 1-2.4-2.4a2.4 2.4 0 0 1 2.4-2.4a2.4 2.4 0 0 1 2.4 2.4z"
+            stroke="none" fill="currentColor" />
+        <path fill="none" stroke="currentColor"
+            d="M42.3 69.9c0 8.9-7.2 16.2-16.2 16.2s-16.2-7.2-16.2-16.2s7.2-16.2 16.2-16.2" pathLength="100" />
+        <path fill="none" stroke="currentColor" stroke-linecap="round" d="M38.2 12.4l0 0" pathLength="100" />
+        <path fill="none" stroke="currentColor"
+            d="M38.2 10.2c1.3 0 2.3 1 2.3 2.3s-1 2.3-2.3 2.3s-2.3-1-2.3-2.3s1-2.3 2.3-2.3z" pathLength="100" />
+        <path fill="none" stroke="currentColor" d="M61.8 36.7c-2.5 2.5-6 4.1-9.8 4.1s-7.3-1.6-9.8-4.1s-4.1-6-4.1-9.8"
+            pathLength="100" />
+        <path fill="none" stroke="currentColor" stroke-linejoin="round" d="M67.7 90v-31.2h-29.6v-32" pathLength="100" />
+    </symbol>
+    <symbol viewBox="0 0 133 100" id="icn-youtube-outline">
+        <path id="youtube-outline"
+            d="M110.7 24.3c1.3 7.3 2 15.5 2 24c0.1 7.3-0.6 15.4-2 23.6c-0.4 1.1-0.7 1.9-1.3 2.7c-1.1 1.5-2.7 2.7-4.5 3.2c-2.8 0.8-10.2 1.3-18.2 1.6c-10.6 0.4-21 0.4-21 0.4s-10.4 0-21-0.4c-8-0.4-15.4-0.8-18.1-1.6c-0.9-0.2-1.9-0.6-2.7-1.2c-1.4-1.1-2.6-2.6-3.2-4.3c-1.3-7.2-2-15.5-2-24c-0.1-7.2 0.6-15.4 2-23.7c0.4-0.9 0.7-1.9 1.3-2.7c1.1-1.5 2.7-2.7 4.5-3.2c2.8-0.7 10.2-1.3 18.2-1.6c10.6-0.4 21-0.4 21-0.4s10.4 0 21 0.4c8 0.4 15.4 0.8 18.1 1.4c1.1 0.4 2 0.8 2.8 1.4c1.4 1.1 2.5 2.7 3 4.6v-0.1zm9-2.1c-0.9-4.1-3.3-7.5-6.4-9.8c-1.8-1.3-3.8-2.2-5.9-2.9c-4.2-0.9-12.7-1.5-20.4-1.8c-10.6-0.4-21.2-0.4-21.2-0.4s-10.7 0-21.3 0.4c-7.6 0.4-16.2 0.8-20.2 2s-7.5 3.6-9.7 6.8c-1.3 1.8-2.2 3.8-2.7 5.9c-0.1 0.1-0.1 0.2-0.1 0.4c-1.6 8.9-2.3 17.8-2.2 25.8c0 9 0.7 17.9 2.2 25.8c0 0.1 0.1 0.2 0.1 0.4c1.2 4.1 3.6 7.4 6.8 9.6c1.6 1.2 3.5 2.1 5.5 2.7c4.1 1.1 12.7 1.5 20.3 1.9c10.7 0.4 21.3 0.4 21.3 0.4s10.7 0 21.3-0.4c7.6-0.4 16.2-0.8 20.2-1.9c4.1-1.2 7.5-3.6 9.7-6.8c1.3-1.9 2.2-3.9 2.7-6c0.1-0.1 0.1-0.2 0.1-0.4c1.6-8.8 2.3-17.6 2.2-25.4c0-9-0.7-18.1-2.2-25.9c0 0 0-0.1-0.1-0.2l0 0zm-59.8 33.4v-14.5l12.8 7.3l-12.8 7.3zm-2.3 12.2l27-15.4c2.2-1.3 3-4.2 1.8-6.4c-0.5-0.7-1.1-1.3-1.8-1.8l-27-15.4c-2.2-1.3-5.2-0.5-6.4 1.8c-0.4 0.8-0.6 1.6-0.6 2.3v30.7c0 2.6 2.1 4.7 4.7 4.7c0.8 0 1.6-0.2 2.3-0.6z"
+            stroke="none" fill="currentColor" />
+    </symbol>
+    <symbol viewBox="0 0 139 100" id="icn-youtube-solid">
+        <path id="youtube-solid"
+            d="M126.5 24.2s-1.1-8.2-4.8-11.7c-4.5-4.8-9.5-4.8-11.8-5c-16.5-1.2-41.4-1.2-41.4-1.2l0 0s-24.9 0-41.5 1.2c-2.2 0.2-7.3 0.2-11.8 5c-3.5 3.5-4.6 11.7-4.6 11.7s-1.2 9.5-1.2 19.2v8.9c0 9.6 1.2 19.2 1.2 19.2s1.1 8.2 4.6 11.8c4.5 4.6 10.5 4.5 13.1 5c9.5 0.9 40.3 1.2 40.3 1.2s24.9-0.1 41.4-1.2c2.3-0.4 7.4-0.4 12-5c3.5-3.7 4.6-11.8 4.6-11.8s1.2-9.5 1.2-19.2v-8.9c0-9.5-1.2-19.2-1.2-19.2zm-70.2 39v-33.3l32 16.7l-32 16.6z"
+            stroke="none" fill="currentColor" />
+    </symbol>
+</svg>

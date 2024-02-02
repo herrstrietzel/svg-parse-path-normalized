@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+    <title>Convert svg pathdata</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+    </style>
+</head>
+
+<body>
+
+
+
+    <div class="grd">
+        <fieldset>
+            <legend>Settings</legend>
+
+            <header>
+                <h1>Convert svg pathdata</h1>
+            </header>
+            <!-- samples -->
+            <p>
+                <select id="inputExample" class="">
+                </select>
+            </p>
+
+
+            <fieldset>
+                <legend>Absolute/relative</legend>
+
+                <label>
+                    <input class="inputs" name="relativeAbsolute" type="radio" value="absolute"> All Absolute
+                </label>
+                <label><input class="inputs" name="relativeAbsolute" type="radio" value="relative" checked> All
+                    Relative</label>
+                <label><input class="inputs" name="relativeAbsolute" type="radio" value="unchanged" >
+                    Unchanged</label>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Cubic/Quadratic conversions</legend>
+                <label><input class="inputs" name="quadraticCubic" type="radio" value="cubic"> Quadratic
+                    to cubic</label>
+                <label><input class="inputs" name="quadraticCubic" type="radio" value="quadratic"> Cubic to
+                    quadratic</label>
+                <label><input class="inputs" name="quadraticCubic" type="radio" value="unchanged" checked>
+                    unchanged</label>
+                <label><input class="inputs" name="arcToCubic" type="checkbox"> Arcs to cubic</label>
+                <label><input class="inputs" name="linesTobezier" type="checkbox"> Lines to Bézier (handy for
+                    morphing animations)</label>
+                <label><input class="inputs" name="convertShapes" type="checkbox" checked> Shapes to paths</label>
+
+            </fieldset>
+
+
+            <fieldset>
+                <legend>Shorthand/longhand conversions</legend>
+                <label>
+                    <input class="inputs" name="toShorthands" type="radio" value="shorthands" checked> Apply
+                    shorthands
+                </label>
+                <label><input class="inputs" name="toShorthands" type="radio" value="longhands"> All
+                    longhands</label>
+                <label><input class="inputs" name="toShorthands" type="radio" value="unchanged" >
+                    Unchanged</label>
+            </fieldset>
+
+
+            <fieldset>
+                <legend>Rounding/Accuracy</legend>
+                <label><input class="inputs" name="decimals" type="number" value="2" min="-1"> Precision</label>
+                <label><input class="inputs" name="scale" type="number" value="1" min="0.01" step="0.1">
+                    Scale</label>
+                <label><input class="inputs" name="arcAccuracy" type="number" value="1" min="1" max="10"> Arc
+                    accuracy (add more segments)</label>
+                <label><input class="inputs" id="cubicToQuadraticPrecision" type="number" value="0.1" min="0.001"
+                        step="0.1"> Cubic to quadratic accuracy</label>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Output optimizations</legend>
+                <label><input class="inputs" name="minify" value="minify" type="radio" checked> Minify</label>
+                <label><input class="inputs" name="minify" value="prettify" type="radio" > Prettify</label>
+                <label><input class="inputs" name="minify" value="unchanged" type="radio" >
+                    unchanged</label>
+                <label><input class="inputs" name="crop" type="checkbox"> Crop and center</label>
+                <label><input class="inputs" name="showMarkers" type="checkbox"> Show markers</label>
+            </fieldset>
+
+            <footer>
+                <p class="p-link">
+                    <a href="https://herrstrietzel.github.io/getPathData2/">
+                        <svg class="icn-svg" viewBox="0 0 96 100">
+                            <use href="icons.svg#icn-github-solid" />
+                        </svg> Back to main page
+                    </a>
+                </p>
+            </footer>
+
+        </fieldset>
+
+        <fieldset>
+            <legend>Input</legend>
+            <p>Paste a svg or a path d string</p>
+            <textarea class="inputs" id="svgInput" name="svgInputVal" spellcheck="false">
+    </textarea>
+
+
+        </fieldset>
+
+        <fieldset>
+            <legend>Output</legend>
+            <p>
+                <span id="spanFilesize"></span>
+            </p>
+            <textarea id="output" spellcheck="false"></textarea>
+            <p>
+                <a class="btn-default btn-ddownload brd-rad" id="btnDownload" download="scaled.svg" href="">
+                    <svg class="icn-svg icn-stroke" viewBox="0 0 100 100">
+                        <use href="icons.svg#icn-download" />
+                    </svg>
+                    Download</a>
+            </p>
+        </fieldset>
+
+        <fieldset>
+            <legend>Preview</legend>
+            <div id="preview" class="preview bck-wht"></div>
+        </fieldset>
+    </div>
+
+    <!-- markers to show commands -->
+    <svg id="svgMarkers" style="width:0; height:0; position:absolute; z-index:-1;float:left;">
+        <defs>
+            <marker id="markerStart" overflow="visible" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="strokeWidth"
+                markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+                <circle cx="5" cy="5" r="5" fill="green"></circle>
+
+                <marker id="markerRound" overflow="visible" viewBox="0 0 10 10" refX="5" refY="5"
+                    markerUnits="strokeWidth" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+                    <circle cx="5" cy="5" r="2.5" fill="red"></circle>
+                </marker>
+        </defs>
+    </svg>
+
+    <!-- 
+            <script src="https://unpkg.com/getpathdatatwo@latest/getPathData2.js"></script>
+            <script src="../getPathData2.js"></script>
+    -->
+
+    <script src="../js/pathDataParseNormalized.js"></script>
+    <script src="../js/pathDataConvert.js"></script>
+    <script src="../js/pathDataConvert_prototypes.js"></script>
+
+    
+
+
+
+    <script>
+
+
+
+
+        window.addEventListener('DOMContentLoaded', (e) => {
+
+
+            /*
+            const { parsepathDataNormalized, pathDataToD } = parsepathData;
+            const { convertPathData, quadratic2Cubic, roundPathData, pathDataToRelative, pathDataToAbsolute, pathDataToLonghands, pathDataToShorthands, pathDataToQuadratic, cubicToQuad, arcToBezier, pathDataToVerbose, convertArrayPathData, revertPathDataToArray, svgArcToCenterParam } = pathDataConvert;
+            */
+
+
+            // load examples
+            for (key in samples) {
+                let option = document.createElement('option')
+                option.value = key
+                option.innerHTML = key
+                inputExample.append(option)
+            }
+
+            let first = inputExample.options[2];
+            first.selected = true
+            svgInput.value = samples[first.value]
+
+            let iV = getInputvars()
+
+            inputExample.addEventListener("input", (e) => {
+                // get svg markup – either single path or svg
+                let example = samples[inputExample.value]
+                svgInput.value = example
+                svgInput.dispatchEvent(new Event('input'))
+            })
+
+
+            let inputs = document.querySelectorAll(".inputs");
+
+            inputs.forEach((inp) => {
+
+
+                inp.addEventListener("input", async (e) => {
+
+                    let svg;
+
+                    // conversion variables
+                    iV = getInputvars()
+                    //extract(inputVars)
+
+                    if (iV.showMarkers) {
+                        preview.classList.add('showMarkers')
+                    } else {
+                        preview.classList.remove('showMarkers')
+                    }
+
+
+                    //let decimals = +inputPrecision.value;
+                    let cropAndCenter = iV.crop;
+
+
+                    let markup = iV.svgInputVal;
+                    let minify = iV.minify
+                    let decimals = iV.decimals
+
+                    let singlePath = false;
+
+                    // if is svg or just element or d
+                    if (!markup.includes("<svg")) {
+                        let ns = 'http://www.w3.org/2000/svg'
+                        svg = document.createElementNS(ns, "svg");
+                        if (!/<[a-z][\s\S]*>/i.test(markup)) {
+                            singlePath = true;
+                            path = document.createElementNS(ns, "path");
+                            path.setAttribute("d", markup);
+                            svg.append(path);
+                        }
+                    }
+                    // parse complete svg
+                    else {
+                        svg = new DOMParser()
+                            .parseFromString(markup, "text/html")
+                            .querySelector("svg");
+                    }
+                    // reset preview
+                    preview.innerHTML = "";
+
+                    if (svg) {
+                        preview.appendChild(svg);
+
+                        // set auto viewBox
+                        if (singlePath) {
+                            let { x, y, width, height } = svg.getBBox()
+                            svg.setAttribute('viewBox', [x, y, width, height].join(' '))
+                        }
+                    }
+
+                    /**
+                     * process paths
+                     */
+
+                
+                   // convert shapes
+                   let shapes = svg.querySelectorAll('polygon, polyline, line, circle, ellipse, rect')
+                   if (iV.convertShapes && shapes.length) {
+                       shapes.forEach(shape => {
+                           shape.convertShapeToPath()
+                       })
+                   }
+                   
+
+                    let paths = svg.querySelectorAll('path')
+
+                    paths.forEach(path => {
+
+                        // parse path
+                        //let pathData = path.getPathData2()
+                        let d = path.getAttribute('d')
+                        let pathData = parsepathDataNormalized(d, { normalize: false })
+
+                        //scale
+                        let scale = iV.scale
+                        if (scale !== 1) {
+                            pathData = scalePathData(pathData, scale, scale)
+                        }
+
+                        // crop and center
+                        if (singlePath && cropAndCenter) {
+                            let { x, y, width, height } = svg.viewBox.baseVal
+                            let bb = svg.getBBox();
+                            width = +width.toFixed(decimals) * scale
+                            height = +height.toFixed(decimals) * scale
+
+                            // adjust viewBox
+                            svg.setAttribute('viewBox', [0, 0, width, height].join(' '))
+
+                            //convert to Relative to shift starting point
+                            pathData = pathDataToRelative(pathData, decimals);
+                            let xN = pathData[0].values[0] - bb.x * scale;
+                            let yN = pathData[0].values[1] - bb.y * scale;
+                            let offsetX = (width - bb.width * scale) / 2;
+                            let offsetY = (height - bb.height * scale) / 2;
+                            pathData[0].values = [xN + offsetX, yN + offsetY]
+                        }
+
+
+                        // set optimized path
+                        let options = {
+                            toRelative: iV.relativeAbsolute === 'relative' ? true : false,
+                            toAbsolute: iV.relativeAbsolute === 'absolute' ? true : false,
+                            toShorthands: iV.toShorthands === 'shorthands' ? true : false,
+                            toLonghands: iV.toShorthands === 'longhands' ? true : false,
+                            quadraticToCubic: iV.quadraticCubic === 'cubic' ? true : false,
+                            cubicToQuadratic: iV.quadraticCubic === 'quadratic' ? true : false,
+                            cubicToQuadraticPrecision: iV.cubicToQuadraticPrecision,
+                            lineToCubic: iV.linesTobezier,
+                            arcToCubic: iV.arcToCubic,
+                            arcAccuracy: iV.arcAccuracy,
+                            decimals: iV.decimals,
+                            minify: iV.minify === 'minify' ? true : false,
+                        }
+
+                        /**
+                         * convert path data
+                         */
+                        pathData = convertPathData(pathData, options)
+
+                        /**
+                         * stringify pathdata to attribute string
+                         */
+                        let minifyPathData = minify === 'minify' ? true : false;
+                        let dNew = pathDataToD(pathData, iV.decimals, minifyPathData)
+
+                        // prettify
+                        if (minify === 'prettify') {
+                            dNew = pathDataToD(pathData, decimals, false)
+                                .replace(/([mlcsqtahvz])([\s\s]*)/gi, "\n$1 $2").
+                                replace(/(\d+)(\-)/g, "$1 $2").
+                                replace(/(\.)(?=(\d+\.\d+)+)(\d+)/g, "$1$3 ").
+                                replace(/\s{2,}/g, ' ').
+                                replace(/([mlcsqtahvz])([\s\s]*)([mlcsqtahvz])/gi, "$1\n$3").
+                                trim();
+                        }
+
+
+                        path.setAttribute('d', dNew)
+
+                    })
+
+
+                    /**
+                     * return output
+                     */
+                    let markupNew
+                    if (singlePath) {
+                        markupNew = svg.querySelector('path').getAttribute('d');
+                    } else {
+                        markupNew = new XMLSerializer().serializeToString(svg);
+                    }
+                    output.value = markupNew.replaceAll('&#10;', '\n');
+
+
+                    // original size
+                    let fileSizeOriginal = +(new Blob([svgInput.value]).size / 1024).toFixed(3)
+
+                    let blob = new Blob([markupNew]);
+                    btnDownload.href = URL.createObjectURL(blob);
+                    let fileSizeNew = +(blob.size / 1024).toFixed(3);
+                    spanFilesize.textContent = fileSizeNew + " KB" + ' – ' + ' saved: ' + (fileSizeOriginal - fileSizeNew).toFixed(3) + '/' + fileSizeOriginal;
+
+                })
+            })
+
+            svgInput.dispatchEvent(new Event('input'))
+
+        });
+
+
+        let samples = {
+            'path_face': `M328.4 393.5C318.7 402.6 303.5 402.1 294.5 392.4C287.1 384.5 274.4 376 256 376C237.6 376 224.9 384.5 217.5 392.4C208.5 402.1 193.3 402.6 183.6 393.5C173.9 384.5 173.4 369.3 182.5 359.6C196.7 344.3 221.4 328 256 328C290.6 328 315.3 344.3 329.5 359.6C338.6 369.3 338.1 384.5 328.4 393.5zM144.4 240C144.4 231.2 147.9 223.2 153.7 217.4L122.9 207.2C114.6 204.4 110 195.3 112.8 186.9C115.6 178.6 124.7 174 133.1 176.8L229.1 208.8C237.4 211.6 241.1 220.7 239.2 229.1C236.4 237.4 227.3 241.1 218.9 239.2L208.1 235.6C208.3 237 208.4 238.5 208.4 240C208.4 257.7 194 272 176.4 272C158.7 272 144.4 257.7 144.4 240V240zM368.4 240C368.4 257.7 354 272 336.4 272C318.7 272 304.4 257.7 304.4 240C304.4 238.4 304.5 236.8 304.7 235.3L293.1 239.2C284.7 241.1 275.6 237.4 272.8 229.1C270 220.7 274.6 211.6 282.9 208.8L378.9 176.8C387.3 174 396.4 178.6 399.2 186.9C401.1 195.3 397.4 204.4 389.1 207.2L358.9 217.2C364.7 223 368.4 231.1 368.4 240H368.4zM0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256zM256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464z`,
+
+
+            'svg_pathfrom_hell1': `<svg viewBox="0 0 100 100" overflow="visible">
+    <path id="path" d="
+    M3,7 
+L13,7 
+m-10,10 
+l10,0 
+V27 
+H23 
+v10 
+h10
+C 33,43 38,47 43,47 
+c 0,5 5,10 10,10
+S 63,67 63,67       
+s -10,10 10,10
+Q 50,50 73,57
+q 20,-5 0,-10
+T 70,40
+t 0,-15
+A 5, 10 45 1040,20  
+a5,5 20 01 -10,-10
+Z " />
+    </svg>`,
+
+
+            'svg_pathfrom_hell2': `<svg viewBox="0 0 100 100" overflow="visible">
+    <path id="path" d="
+    
+    m 50 0 .00001.0001.001 10e-10         
+        Q 36.4 0 24.8 6.8        
+        t -18 18         
+        t -6.8 25.2         
+        C 0 63.8 5.6 76.3 14.65 85.35         
+        s 21.55 14.65 35.35 14.65      
+
+        a 50 25 -45 01 15.8 -34.3
+         50 25 -45 0134.2 -25.7
+         
+        h -20-.5         
+        v -12.5-12.5         
+        H 75 50         
+        V 0   
+        z     
+
+        M 40 60 
+        h-20 
+        V 20
+        h 18 .5.5.5.5
+        z" />
+    </svg>`,
+            'svg_shapes': `    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 30">
+        <g class="gPrimitives">
+            <polygon id="polygon" fill="#CCCCCC" stroke="#E3000F"
+                points="7.9,22.8 3,14.3 7.9,5.8 17.6,5.8 22.5,14.3 17.6,22.8 " />
+            <polyline id="polyline" fill="none" stroke="#E3000F"
+                points="40.9,22.8 31.1,22.8 26.2,14.3 31.1,5.8 40.9,5.8 45.8,14.3 " />
+            <rect id="rect" x="37.5%" y="20%" rx="5%" ry="6%" fill="none" stroke="#E3000F" width="6%" height="56%" />
+            <line id="line" fill="none" stroke="#E3000F" x1="50.5" y1="22.8" x2="52.5" y2="5.8" />
+            <circle id="circle" fill="none" stroke="#E3000F" cx="52%" cy="49%" r="8%" />
+            <ellipse id="ellipse" fill="none" stroke="#E3000F" cx="68%" cy="49%" rx="7%" ry="25%" />
+            <path id="piechart" transform="scale(0.9) translate(130, 6)" d="M 10 0 A 10 10 0 1 1 1.34 15 L 10 10 z"
+                fill="red" class="segment segment-1 segment-class" id="segment-01" />
+        </g>
+    </svg>`, 
+    'path_random' : `M  529 664  C  93 290  616 93  1942 385  C  1014 330  147 720  2059 70  C  1307 400  278 713  1686 691`
+        }
+
+
+        /**
+         * scale pathData
+         */
+        function scalePathData(pathData, scaleX, scaleY) {
+            console.log('scalePathData', pathData);
+
+
+            pathData.forEach((com, i) => {
+                let { type, values } = com;
+                let typeRel = type.toLowerCase();
+
+                switch (typeRel) {
+                    case "a":
+                        com.values = [
+                            values[0] * scaleX,
+                            values[1] * scaleY,
+                            values[2],
+                            values[3],
+                            values[4],
+                            values[5] * scaleX,
+                            values[6] * scaleY
+                        ];
+                        break;
+
+                    case "h":
+                        com.values = [values[0] * scaleX];
+                        break;
+
+                    case "v":
+                        com.values = [values[0] * scaleY];
+                        break;
+
+                    default:
+                        if (values.length) {
+                            for (let i = 0; i < values.length; i += 2) {
+                                com.values[i] *= scaleX;
+                                com.values[i + 1] *= scaleY;
+                            }
+                        }
+                }
+            });
+            return pathData;
+        }
+
+
+        function getInputvars(selector = ".inputs") {
+            let inputFields = document.querySelectorAll(selector);
+            let inputVals = {}
+
+            inputFields.forEach((inp, i) => {
+                let type = inp.type ? inp.type : inp.nodeName;
+                let varName = inp.name ? inp.name : (inp.id ? inp.id : `var_${i}`);
+                //let val = type==='checkbox' ? (inp.checked ? true : false) :
+                let val
+                switch (type) {
+                    case 'checkbox':
+                        val = inp.checked ? true : false;
+                        break;
+
+                    case 'radio':
+                        val = document.querySelector(`input[name="${varName}"]:checked`).value;
+                        break;
+
+                    case 'number':
+                    case 'range':
+                        val = +inp.value;
+                        break;
+
+                    default:
+                        val = inp.value;
+
+                }
+                inputVals[varName] = val
+            })
+
+            return inputVals;
+        }
+
+
+
+    </script>
+
+
+</body>
+
+</html>

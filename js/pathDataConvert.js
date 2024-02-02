@@ -17,7 +17,7 @@
 
 /** chainable prototype methods  */
 Array.prototype.convert = function (options) {
-    return convertPathData(this, options);;
+    return convertPathData(this, options);
 }
 
 Array.prototype.toAbsolute = function (decimals = -1) {
@@ -104,7 +104,7 @@ function convertPathData(pathData, options) {
 
 
     // nothing to convert – passthrough
-    if (!hasRel && !hasShorthands && !hasQuadratics && !hasArcs && !toRelative && !toShorthands) {
+    if (!hasRel && !hasShorthands && !hasQuadratics && !hasArcs && !toRelative && !toShorthands && !lineToCubic) {
         return pathData
     }
 
@@ -124,7 +124,7 @@ function convertPathData(pathData, options) {
      * will force toAbsolute conversion
      */
 
-    if (arcToCubic || toLonghands || quadraticToCubic || cubicToQuadratic || arcParam) {
+    if (arcToCubic || toLonghands || quadraticToCubic || cubicToQuadratic || arcParam || lineToCubic) {
         toAbsolute = true
     }
 
@@ -198,7 +198,7 @@ function convertPathData(pathData, options) {
         /**
          * convert shorthands
          */
-        if (toLonghands && hasShorthands || (com.type === 'T' && quadraticToCubic)) {
+        if (toLonghands && hasShorthands || (com.type === 'T' && quadraticToCubic) || lineToCubic) {
             let cp1X, cp1Y, cpN1X, cpN1Y, cp2X, cp2Y;
             if (com.type === 'H' || com.type === 'V') {
                 com.values = com.type === 'H' ? [com.values[0], lastY] : [lastX, com.values[0]];
@@ -1451,6 +1451,11 @@ pathDataConvert.convertArrayPathData=convertArrayPathData;
 pathDataConvert.revertPathDataToArray=revertPathDataToArray;
 pathDataConvert.svgArcToCenterParam=svgArcToCenterParam;
 
-
 return pathDataConvert;
 });
+
+
+if (typeof module === 'undefined') {
+    var { convertPathData, quadratic2Cubic, roundPathData, pathDataToRelative, pathDataToAbsolute, pathDataToLonghands, pathDataToShorthands, pathDataToQuadratic, cubicToQuad, arcToBezier, pathDataToVerbose, convertArrayPathData, revertPathDataToArray, svgArcToCenterParam } = pathDataConvert;
+}
+

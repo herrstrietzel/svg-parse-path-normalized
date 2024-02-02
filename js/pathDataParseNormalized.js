@@ -625,3 +625,10 @@ path.setAttribute('d', d)
 
     return parsepathData;
 });
+
+
+
+if (typeof module === 'undefined') {
+    var { parsepathDataNormalized, pathDataToD } = parsepathData;
+}
+
