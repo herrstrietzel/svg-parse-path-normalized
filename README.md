@@ -21,7 +21,7 @@ This library aims to provide a performant yet compact (~6KB/3KB minified; gzippe
     + [6.3 Convert pathdata structure](#63-convert-pathdata-structure)
       - [6.3.1 Array notation to pathdata](#631-array-notation-to-pathdata)
       - [6.3.2 pathDataToVerbose(pathData)](#632-pathdatatoverbose-pathdata)
-  * [8. Demos](#8-demos)
+  * [7. Demos](#8-demos)
   * [Credits](#credits)
 
 
@@ -129,7 +129,7 @@ parsepathDataNormalized(d)
 ```
 
 The above example illustrates a problem with overly "lightweight" path parsers:  
-We need an extra check to "unravel" the `A` arcto's `largeArc` and `sweep` flags, which are concatenated with the subsequent on-path x coordinate value. (See [basic example](https://codepen.io/herrstrietzel/pen/NWJpOYR))
+We need an extra check to "unravel" the `A` arcto's `largeArc` and `sweep` flags, which can be concatenated with the subsequent on-path x coordinate value. (See [basic example](https://codepen.io/herrstrietzel/pen/NWJpOYR))
 
 
 
@@ -139,14 +139,14 @@ We need an extra check to "unravel" the `A` arcto's `largeArc` and `sweep` flags
 
 ```
 let options= {
-    normalize: null,
-    toAbsolute: true,
-    unshort: true,
-    arcToCubic: false,
-    quadraticToCubic: false,
-    lineToCubic: false,
-    debug: false,
-    decimals: -1
+    normalize: null,          //shorthand for aggressive normalisation
+    toAbsolute: true,         //necessary for most calculations
+    unshort: true,            //dito
+    arcToCubic: false,        //sometimes necessary
+    quadraticToCubic: false,  //frankly, not necessary most of the time
+    lineToCubic: false,       //handy for morphing animations
+    debug: false,             //handy to detect malformed pathdata retrieved from user inputs
+    decimals: -1              //-1=no rounding
 }
 ```
 
