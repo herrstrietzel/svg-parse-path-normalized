@@ -4,25 +4,26 @@ Parses path data from string including *fine-grained* normalisation and conversi
 This library aims to provide a performant yet compact (~6KB/3KB minified; gzipped) parser – respecting all minified/shorthand notations as a basis for all kinds of custom path data manipulations.  
 
 
-  * [1. Basic functionality and helpers](#1-basic-functionality-and-helpers)
-    + [1.1 Parse, normalize and stringify](#11-parse-normalize-and-stringify)
-    + [1.2 Advanced conversions](#12-advanced-conversions)
-  * [2. Usage parser](#2-usage-parser)
-    + [2.1 Browser](#21-browser)
-    + [2.2 Node](#22-node)
-  * [3. Pathdata format](#3-pathdata-format)
-  * [4. All normalization options](#4-all-normalization-options)
-    + [4.1 Original path data – normalization disabled](#41-original-path-data-normalization-disabled)
-    + [4.2 Recommendations](#42-recommendations)
-  * [5. Stringify to back to `d` attribute string](#5-stringify-to-back-to-d-attribute-string)
-  * [6. More conversions via pathDataConvert.js](#6-more-conversions-via-pathdataconvertjs)
-    + [6.1 Usage](#61-usage)
-    + [6.2 Usage as an addon/plugin for `getPathData()`](#62-usage-as-an-addonplugin-for-getpathdata)
-    + [6.3 Convert pathdata structure](#63-convert-pathdata-structure)
-      - [6.3.1 Array notation to pathdata](#631-array-notation-to-pathdata)
-      - [6.3.2 pathDataToVerbose(pathData)](#632-pathdatatoverbose-pathdata)
-  * [7. Demos](#8-demos)
-  * [Credits](#credits)
+* [1. Basic functionality and helpers](#1-basic-functionality-and-helpers)
+  + [1.1 Parse, normalize and stringify](#11-parse-normalize-and-stringify)
+  + [1.2 Advanced conversions](#12-advanced-conversions)
+* [2. Usage parser](#2-usage-parser)
+  + [2.1 Browser](#21-browser)
+  + [2.2 Node](#22-node)
+* [3. Pathdata format](#3-pathdata-format)
+* [4. All normalization options](#4-all-normalization-options)
+  + [4.1 Original path data: normalization disabled](#41-original-path-data-normalization-disabled)
+  + [4.2 Recommendations](#42-recommendations)
+* [5. Stringify to back to d attribute string](#5-stringify-to-back-to-d-attribute-string)
+* [6. More conversions via pathDataConvert.js](#6-more-conversions-via-pathdataconvertjs)
+  + [6.1 Usage](#61-usage)
+  + [6.2 Usage as an addon/plugin for getPathData()](#62-usage-as-an-addon-plugin-for-getpathdata)
+  + [6.3 Convert pathdata structure](#63-convert-pathdata-structure)
+    - [6.3.1 Array notation to pathdata](#631-array-notation-to-pathdata)
+    - [6.3.2 pathDataToVerbose(pathData)](#632-pathdatatoverbosepathdata)
+* [7. Demos](#7-demos)
+* [Credits](#credits)
+
 
 
 
@@ -247,7 +248,7 @@ In case you need to convert these you can use the helper methods (included in pa
 * `convertArrayPathData(pathDataArray)` 
 * `revertPathDataToArray(pathData)`
 
-#### 6.3.2 pathDataToVerbose(pathData) 
+#### 6.3.2 pathDataToVerbose(pathData)
 Besides you can use `pathDataToVerbose(pathData)` to get a more detailed data array including original and absolute point coordinates as well as parametrized arc data `rx` and `ry`,  `startAngle`, `endAngle`, `deltaAngle` (in radians)
 
 ```
