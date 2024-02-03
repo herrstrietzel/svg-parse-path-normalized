@@ -233,7 +233,7 @@ You may already have a set of parsed/abstracted path data retrieved from other l
 In this case you may use these conversion methods.
 
 #### 6.3.1 Array notation to pathdata
-A lot of libraries – such as snap.svg use an nested array structure for each command like so
+A lot of libraries – such as snap.svg use a nested array structure for each command like so
 
 ```
 [
