@@ -1,6 +1,9 @@
 # svg-parse-path-normalized
 Parses path data from string including *fine-grained* normalisation and conversion options.  
 
+This library aims to provide a performant yet compact (~6KB/3KB minified; gzipped) parser – respecting all minified/shorthand notations as a basis for all kinds of custom path data manipulations.  
+
+
   * [1. Basic functionality and helpers](#1-basic-functionality-and-helpers)
     + [1.1 Parse, normalize and stringify](#11-parse-normalize-and-stringify)
     + [1.2 Advanced conversions](#12-advanced-conversions)
@@ -23,7 +26,6 @@ Parses path data from string including *fine-grained* normalisation and conversi
 
 
 ## 1. Basic functionality and helpers
-This library aims to provide a performant yet compact (~6KB/3KB minified; gzipped) parser – respecting all minified/shorthand notations as a basis for all kinds of custom path data manipulations.  
 
 ### 1.1 Parse, normalize and stringify 
 Usually parsing alone is not enough to get computable path data values – due to relative or shorthand commands or `a` arcto commands that may rather complicate further manipulations such as length or area calculations – especially when dealing with elliptical and/or rotated arcs.  
