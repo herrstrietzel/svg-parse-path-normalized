@@ -14,7 +14,7 @@ Parses path data from string including *fine-grained* normalisation and conversi
   * [5. Stringify to back to `d` attribute string](#5-stringify-to-back-to-d-attribute-string)
   * [6. More conversions via pathDataConvert.js](#6-more-conversions-via-pathdataconvertjs)
     + [6.1 Usage](#61-usage)
-    + [6.2 `pathDataConvert.js` as an addon/plugin for `getPathData()`](#62--pathdataconvertjs--as-an-addon-plugin-for-getpathdata)
+    + [6.2 Usage as an addon/plugin for `getPathData()`](#62-usage-as-an-addonplugin-for-getpathdata)
     + [6.3 Convert pathdata structure](#63-convert-pathdata-structure)
       - [6.3.1 pathDataToVerbose(pathData)](#631-pathdatatoverbose-pathdata)
   * [8. Demos](#8-demos)
