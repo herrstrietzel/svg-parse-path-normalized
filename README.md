@@ -19,7 +19,8 @@ This library aims to provide a performant yet compact (~6KB/3KB minified; gzippe
     + [6.1 Usage](#61-usage)
     + [6.2 Usage as an addon/plugin for `getPathData()`](#62-usage-as-an-addonplugin-for-getpathdata)
     + [6.3 Convert pathdata structure](#63-convert-pathdata-structure)
-      - [6.3.1 pathDataToVerbose(pathData)](#631-pathdatatoverbose-pathdata)
+      - [6.3.1 Array notation to pathdata](#631-array-notation-to-pathdata)
+      - [6.3.2 pathDataToVerbose(pathData)](#632-pathdatatoverbose-pathdata)
   * [8. Demos](#8-demos)
   * [Credits](#credits)
 
@@ -246,7 +247,7 @@ In case you need to convert these you can use the helper methods (included in pa
 * `convertArrayPathData(pathDataArray)` 
 * `revertPathDataToArray(pathData)`
 
-#### 6.3.1 pathDataToVerbose(pathData) 
+#### 6.3.2 pathDataToVerbose(pathData) 
 Besides you can use `pathDataToVerbose(pathData)` to get a more detailed data array including original and absolute point coordinates as well as parametrized arc data `rx` and `ry`,  `startAngle`, `endAngle`, `deltaAngle` (in radians)
 
 ```
