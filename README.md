@@ -35,6 +35,7 @@ Normalization (admittedly a slightly ambigious term) via `parsepathDataNormalize
 * commands to **shorthand/reflected** commands to longhand equivalents like e.g `h`, `v`, `s`, `t` to `L`, `C`, `T`
 * *(optional)* convert/approximate **arcs to cubics**
 * *(optional)* convert **quadratic béziers to cubics**
+* *(optional)* **debug:** detect malformed path data inputs
 * *(optional)* **round** coordinates 
 * **stringify to `d` attribute** – including minification options
 
@@ -225,7 +226,11 @@ Currently, the  W3C draft for the SVGPathData interface is not supported by any 
 **This polyfill is a "battle-proof" parser!** Since the W3C draft doesn't  include fine-grained control over the normalisation/conversion process you can use the `pathDataConvert.js` script as an addon/plugin  alongside with the aforementioned polyfill script. (See Demo/getPathDataAddon.html)
 
 ### 6.3 Convert pathdata structure
-A lot of libraries use an array structure for each command like so
+You may already have a set of parsed/abstracted path data retrieved from other libraries or APIs or need a more verbose notation.    
+In this case you may use these conversion methods.
+
+#### 6.3.1 Array notation to pathdata
+A lot of libraries – such as snap.svg use an nested array structure for each command like so
 
 ```
 [
@@ -286,7 +291,7 @@ let data = [
 ];
 ```
 
-## 8. Demos 
+## 7. Demos 
 * [parse pathdata with different normalization options](https://codepen.io/herrstrietzel/pen/NWJpOYR) (demos/index.html)  
 * `pathDataConvert.js` as a [addon/plugin for `path.getPathData()`](https://codepen.io/herrstrietzel/pen/dyreNep) (demos/getPathDataAddon.html)
 * [convert commands to pretty much anything](https://codepen.io/herrstrietzel/pen/JjzvRjb) | (demos/converter.html)
