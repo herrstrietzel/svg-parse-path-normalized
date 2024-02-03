@@ -183,14 +183,11 @@
     <script src="../js/pathDataConvert.js"></script>
 
     <script>
-        // init methods
-        const { parsepathDataNormalized, pathDataToD } = parsepathData;
 
         /**
          * 1. simple parsing 
          */
         let pathData = parsepathDataNormalized("m 0 0 .5.5.5.5a 5 10 45 1040 20")
-
 
 
         //stringify to pathdata d string
@@ -206,7 +203,6 @@
          * 3. Quick convert
          */
 
-        const { convertPathData, quadratic2Cubic, roundPathData, pathDataToRelative, pathDataToAbsolute, pathDataToLonghands, pathDataToShorthands, pathDataToQuadratic, cubicToQuad, arcToBezier, pathDataToVerbose, convertArrayPathData, revertPathDataToArray, svgArcToCenterParam } = pathDataConvert;
 
         let pathDataCon = pathData.convert({arcToCubic:true, toRelative:true, decimals:0})
 

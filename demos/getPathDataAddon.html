@@ -9,7 +9,7 @@
 
     <style>
         body {
-            font-family: sans-serif;
+            font-family: 'Fira Sans', 'Segoe UI', sans-serif;
         }
 
         svg {
@@ -67,8 +67,9 @@
 
         code {
             background: #eee;
-            display: block;
+            display: inline-block;
             padding: 0.5em;
+            margin-right:0.3em;
         }
 
         #pErrors {
@@ -110,7 +111,15 @@
                 <path id="path2" fill="none" stroke="green" stroke-width="0.5" />
             </svg>
         </div>
+        <div class="col">
+            <h1>Convert pathData</h1>
+            <h2>Parse pathdata via <a href="https://github.com/jarek-foksa/path-data-polyfill">Jarek Foksa's polyfill</a> and convert it</h2>
+              <p>If it ever gets implemented by natively supported <code>getpathData()</code><code>setpathData()</code> methods</p> 
+            <textarea id="svgOut"></textarea>
+        </div>
     </div>
+
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/path-data-polyfill@1.0.4/path-data-polyfill.min.js"></script>
@@ -118,10 +127,78 @@
 
     <script>
 
-        const pathData= path.getPathData().convert({toRelative:true, toShorthands:true, decimals: 1 })
+        let options = {
+            //normalize: true,
+            //optimize: true,
+            //toAbsolute: true,
+            toRelative: true,
+            //quadraticToCubic: true,
+            cubicToQuadratic: true,
+            cubicToQuadraticPrecision: 0.1,
+            lineToCubic: true,
+            //toLonghands: true,
+            toShorthands: true,
+            arcToCubic: true,
+            //arcParam: false,
+            arcAccuracy: 1,
+            decimals: 1,
+        }
+        const pathData = path.getPathData().convert(options)
         path2.setPathData(pathData);
-        console.log(pathData);
-      
+        svgOut.value = pathDataToD(pathData)
+
+
+        /**
+          * serialize pathData array to 
+          * d attribute string 
+          */
+        function pathDataToD(pathData, decimals = -1, minify = false) {
+
+            // implicit l command
+            if (pathData[1].type === "l" && minify) {
+                pathData[0].type = "m";
+            }
+            let d = `${pathData[0].type}${pathData[0].values.join(" ")}`;
+
+            for (let i = 1; i < pathData.length; i++) {
+                let com0 = pathData[i - 1];
+                let com = pathData[i];
+                let { type, values } = com;
+
+                // minify arctos
+                if (minify && type === 'A' || type === 'a') {
+                    values = [values[0], values[1], values[2], [values[3], values[4], values[5]].join(''), values[6]]
+                }
+
+                // round
+                if (values.length && decimals > -1) {
+                    values = values.map(val => { return typeof val === 'number' ? +val.toFixed(decimals) : val })
+                }
+
+                // omit type for repeated commands
+                type = (com0.type === com.type && com.type.toLowerCase() != 'm' && minify) ?
+                    " " : (
+                        (com0.type === "m" && com.type === "l") ||
+                        (com0.type === "M" && com.type === "l") ||
+                        (com0.type === "M" && com.type === "L")
+                    ) && minify ?
+                        " " : com.type;
+
+                d += `${type}${values.join(" ")}`;
+            }
+
+            if (minify) {
+                d = d
+                    .replaceAll(" 0.", " .")
+                    .replaceAll(" -", "-")
+                    .replaceAll("-0.", "-.")
+                    .replaceAll("Z", "z");
+            }
+            return d;
+        }
+
+
+
     </script>
 
 
