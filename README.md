@@ -32,7 +32,7 @@ This library aims to provide a performant yet compact (~6KB/3KB minified; gzippe
 ### 1.1 Parse, normalize and stringify 
 Usually parsing alone is not enough to get computable path data values – due to relative or shorthand commands or `a` arcto commands that may rather complicate further manipulations such as length or area calculations – especially when dealing with elliptical and/or rotated arcs.  
 
-Normalization (admittedly a slightly ambigious term) via `parsepathDataNormalized(d)` applies by default these conversions:  
+Normalization (admittedly a slightly ambigious term) via `parsePathDataNormalized(d)` applies by default these conversions:  
 * (default) all commands to **absolute**
 * (default) decompose **implicit or repeated** commands  
    e.g `m 0 0 .5.5.5.5` to `M 0 0 l 0.5 0.5 l 0.5 0.5`
@@ -73,7 +73,7 @@ Provided by `pathDataConvert.js`: Useful to convert your manipulated/processed p
 
 //parse
 const d ="m 0 0 .5.5.5.5a 5 10 45 1040 20" ;
-let pathData = parsepathDataNormalized(d)
+let pathData = parsePathDataNormalized(d)
 
 //stringify to pathdata d string
 let minify = false;
@@ -94,11 +94,11 @@ npm install svg-parse-path-normalized
 ``` lang-js
 
 const parsepathData = require('svg-parse-path-normalized');
-const {parsepathDataNormalized, pathDataToD} = parsepathData;
+const {parsePathDataNormalized, pathDataToD} = parsepathData;
 
 //parse
 const d ="m 0 0 .5.5.5.5a 5 10 45 1040 20" ;
-let pathData = parsepathDataNormalized(d)
+let pathData = parsePathDataNormalized(d)
 
 //stringify to pathdata d string
 let minify = false;
@@ -117,7 +117,7 @@ The returned path data parsed from a stringified pathdata `d` attribute string i
 
 ``` lang-js
 const d ="m 0 0 .5.5.5.5a 5 1045 1040 20" 
-parsepathDataNormalized(d)
+parsePathDataNormalized(d)
 ```
 
 ``` lang-js
@@ -136,7 +136,7 @@ We need an extra check to "unravel" the `A` arcto's `largeArc` and `sweep` flags
 
 ## 4. All normalization options
 
-`parsepathDataNormalized(d, options)` accepts these parameters
+`parsePathDataNormalized(d, options)` accepts these parameters
 
 ```
 let options= {
@@ -165,7 +165,7 @@ let options= {
 ### 4.1 Original path data: normalization disabled
 Set normalize to false to get the original (not normalized) pathdata – including relative or shorthand commands.     
 
- `parsepathDataNormalized(d, {normalize:false})`  
+ `parsePathDataNormalized(d, {normalize:false})`  
 
 ### 4.2 Recommendations
 * Quadratic béziers usually provide much faster calculations/algorithms – think twice before converting to cubic.

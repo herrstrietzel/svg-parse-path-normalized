@@ -18,7 +18,7 @@ let options = {
     decimals: -1
 }
 let d = "M 0 0 ... z"
-let pathDataAbs = parsepathDataNormalized(d, options)
+let pathDataAbs = parsePathDataNormalized(d, options)
 
 * revert to d attribute string 
 * (options: round to decimals; minify=omit repeated commands)
@@ -44,7 +44,7 @@ path.setAttribute('d', d)
 })(this, function () {
     var parsepathData = {};
 
-    function parsepathDataNormalized(d, options = {}) {
+    function parsePathDataNormalized(d, options = {}) {
         // define options
         let defaults = {
             normalize: null,
@@ -620,7 +620,7 @@ path.setAttribute('d', d)
         return d;
     }
 
-    parsepathData.parsepathDataNormalized = parsepathDataNormalized;
+    parsepathData.parsePathDataNormalized = parsePathDataNormalized;
     parsepathData.pathDataToD = pathDataToD;
 
     return parsepathData;
@@ -629,6 +629,6 @@ path.setAttribute('d', d)
 
 
 if (typeof module === 'undefined') {
-    var { parsepathDataNormalized, pathDataToD } = parsepathData;
+    var { parsePathDataNormalized, pathDataToD } = parsepathData;
 }
 
