@@ -29,7 +29,6 @@ path.setAttribute('d', d)
 * See example codepen: 
 * https://codepen.io/herrstrietzel/pen/NWJpOYR
 */
-
 (function (root, factory) {
     if (typeof module !== 'undefined' && module.exports) {
         // CommonJS / Node.js
@@ -118,7 +117,7 @@ path.setAttribute('d', d)
         ];
 
         // offsets for absolute conversion
-        let offX, offY, lastX, lastY;
+        let offX, offY, lastX, lastY, M;
 
 
         // no M starting command – return dummy pathdata
@@ -215,7 +214,7 @@ path.setAttribute('d', d)
             }
 
             // no relative, shorthand or arc command - return current 
-            if (normalize===false || (!hasRelative && !hasQuadratics && !hasShorthands && !hasArcs) ) {
+            if (normalize === false || (!hasRelative && !hasQuadratics && !hasShorthands && !hasArcs)) {
                 comChunks.forEach((com) => {
                     pathData.push(com);
                 });
@@ -231,6 +230,8 @@ path.setAttribute('d', d)
                     offY = values[1];
                     lastX = offX;
                     lastY = offY;
+                    M = { x: values[0], y: values[1] };
+
                 }
 
                 let typeFirst = comChunks[0].type;
@@ -278,6 +279,10 @@ path.setAttribute('d', d)
                             case "m":
                             case "l":
                             case "t":
+                                //update last M
+                                if (type === 'm') {
+                                    M = { x: values[0] + offX, y: values[1] + offY };
+                                }
                                 com.values = [values[0] + offX, values[1] + offY];
                                 break;
 
@@ -301,6 +306,13 @@ path.setAttribute('d', d)
                                     values[3] + offY
                                 ];
                                 break;
+
+                            case 'z':
+                            case 'Z':
+                                lastX = M.x;
+                                lastY = M.y;
+                                break;
+
                         }
                     }
                     // is absolute
@@ -401,33 +413,23 @@ path.setAttribute('d', d)
         pathData[0].type = "M";
 
         /**
-         * convert quadratics to cubic
-         */
-        
+        * convert quadratics to cubic
+        */
+
         if (hasQuadratics && quadraticToCubic) {
-            pathData.forEach((com, i) => {
-                if (com.type === 'Q') {
-                    let values = com.values
+            for (let i = 0; i < pathData.length; i++) {
+                let com = pathData[i];
+                if (com.type === 'Q' && hasQuadratics && quadraticToCubic) {
                     let comPrev = pathData[i - 1];
                     let comPrevValues = comPrev.values;
                     let comPrevValuesL = comPrevValues.length;
-
-                    let x0 = comPrevValues[comPrevValuesL - 2],
-                        y0 = comPrevValues[comPrevValuesL - 1],
-                        cp1x = x0 + 2 / 3 * (values[0] - x0),
-                        cp1y = y0 + 2 / 3 * (values[1] - y0),
-                        cp2x = values[2] + 2 / 3 * (values[0] - values[2]),
-                        cp2y = values[3] + 2 / 3 * (values[1] - values[3])
-
-                    pathData[i].type = 'C'
-                    pathData[i].values = [cp1x, cp1y, cp2x, cp2y, values[2], values[3]]
+                    let p0 = { x: comPrevValues[comPrevValuesL - 2], y: comPrevValues[comPrevValuesL - 1] }
+                    pathData[i] = quadratic2Cubic(p0, com.values)
                 }
-            })
+            }
         }
 
-
         // round coordinates
-        //decimals=1
         if (decimals > -1) {
             pathData = pathData.map(com => { return { type: com.type, values: com.values.map(val => { return +val.toFixed(decimals) }) } });
         }
@@ -435,142 +437,161 @@ path.setAttribute('d', d)
         return pathData;
 
 
-        /** 
-         * convert arctocommands to cubic bezier
-         * based on puzrin's a2c.js
-         * https://github.com/fontello/svgpath/blob/master/lib/a2c.js
-         * returns pathData array
-        */
+        /**
+         * convert quadratic commands to cubic
+         */
+        function quadratic2Cubic(p0, values) {
 
-        function arcToBezier(p0, values, splitSegments = 1) {
-            const TAU = Math.PI * 2;
-            let [rx, ry, rotation, largeArcFlag, sweepFlag, x, y] = values;
-
-            if (rx === 0 || ry === 0) {
-                return []
+            let cp1 = {
+                x: p0.x + 2 / 3 * (values[0] - p0.x),
+                y: p0.y + 2 / 3 * (values[1] - p0.y)
+            }
+            let cp2 = {
+                x: values[2] + 2 / 3 * (values[0] - values[2]),
+                y: values[3] + 2 / 3 * (values[1] - values[3])
             }
 
-            let phi = rotation ? rotation * TAU / 360 : 0;
-            let sinphi = phi ? Math.sin(phi) : 0
-            let cosphi = phi ? Math.cos(phi) : 1
-            let pxp = cosphi * (p0.x - x) / 2 + sinphi * (p0.y - y) / 2
-            let pyp = -sinphi * (p0.x - x) / 2 + cosphi * (p0.y - y) / 2
-
-            if (pxp === 0 && pyp === 0) {
-                return []
-            }
-            rx = Math.abs(rx)
-            ry = Math.abs(ry)
-            let lambda =
-                pxp * pxp / (rx * rx) +
-                pyp * pyp / (ry * ry)
-            if (lambda > 1) {
-                let lambdaRt = Math.sqrt(lambda);
-                rx *= lambdaRt
-                ry *= lambdaRt
-            }
-
-            /** 
-             * parametrize arc to 
-             * get center point start and end angles
-             */
-            let rxsq = rx * rx,
-                rysq = rx === ry ? rxsq : ry * ry
-
-            let pxpsq = pxp * pxp,
-                pypsq = pyp * pyp
-            let radicant = (rxsq * rysq) - (rxsq * pypsq) - (rysq * pxpsq)
-
-            if (radicant <= 0) {
-                radicant = 0
-            } else {
-                radicant /= (rxsq * pypsq) + (rysq * pxpsq)
-                radicant = Math.sqrt(radicant) * (largeArcFlag === sweepFlag ? -1 : 1)
-            }
-
-            let centerxp = radicant ? radicant * rx / ry * pyp : 0
-            let centeryp = radicant ? radicant * -ry / rx * pxp : 0
-            let centerx = cosphi * centerxp - sinphi * centeryp + (p0.x + x) / 2
-            let centery = sinphi * centerxp + cosphi * centeryp + (p0.y + y) / 2
-
-            let vx1 = (pxp - centerxp) / rx
-            let vy1 = (pyp - centeryp) / ry
-            let vx2 = (-pxp - centerxp) / rx
-            let vy2 = (-pyp - centeryp) / ry
-
-            // get start and end angle
-            const vectorAngle = (ux, uy, vx, vy) => {
-                let dot = +(ux * vx + uy * vy).toFixed(9)
-                if (dot === 1 || dot === -1) {
-                    return dot === 1 ? 0 : Math.PI
-                }
-                dot = dot > 1 ? 1 : (dot < -1 ? -1 : dot)
-                let sign = (ux * vy - uy * vx < 0) ? -1 : 1
-                return sign * Math.acos(dot);
-            }
-
-            let ang1 = vectorAngle(1, 0, vx1, vy1),
-                ang2 = vectorAngle(vx1, vy1, vx2, vy2)
-
-            if (sweepFlag === 0 && ang2 > 0) {
-                ang2 -= Math.PI * 2
-            }
-            else if (sweepFlag === 1 && ang2 < 0) {
-                ang2 += Math.PI * 2
-            }
-
-            let ratio = +(Math.abs(ang2) / (TAU / 4)).toFixed(0)
-
-            // increase segments for more accureate length calculations
-            let segments = ratio * splitSegments;
-            ang2 /= segments
-            let pathDataArc = [];
-
-
-            // If 90 degree circular arc, use a constant
-            // https://pomax.github.io/bezierinfo/#circles_cubic
-            // k=0.551784777779014
-            const angle90 = 1.5707963267948966;
-            const k = 0.551785
-            let a = ang2 === angle90 ? k :
-                (
-                    ang2 === -angle90 ? -k : 4 / 3 * Math.tan(ang2 / 4)
-                );
-
-            let cos2 = ang2 ? Math.cos(ang2) : 1;
-            let sin2 = ang2 ? Math.sin(ang2) : 0;
-            let type = 'C'
-
-            const approxUnitArc = (ang1, ang2, a, cos2, sin2) => {
-                let x1 = ang1 != ang2 ? Math.cos(ang1) : cos2;
-                let y1 = ang1 != ang2 ? Math.sin(ang1) : sin2;
-                let x2 = Math.cos(ang1 + ang2);
-                let y2 = Math.sin(ang1 + ang2);
-
-                return [
-                    { x: x1 - y1 * a, y: y1 + x1 * a },
-                    { x: x2 + y2 * a, y: y2 - x2 * a },
-                    { x: x2, y: y2 }
-                ];
-            }
-
-            for (let i = 0; i < segments; i++) {
-                let com = { type: type, values: [] }
-                let curve = approxUnitArc(ang1, ang2, a, cos2, sin2);
-
-                curve.forEach((pt) => {
-                    let x = pt.x * rx
-                    let y = pt.y * ry
-                    com.values.push(cosphi * x - sinphi * y + centerx, sinphi * x + cosphi * y + centery)
-                })
-                pathDataArc.push(com);
-                ang1 += ang2
-            }
-
-            return pathDataArc;
+            return ({ type: "C", values: [cp1.x, cp1.y, cp2.x, cp2.y, values[2], values[3]] });
         }
     }
-  
+
+
+    /** 
+             * convert arctocommands to cubic bezier
+             * based on puzrin's a2c.js
+             * https://github.com/fontello/svgpath/blob/master/lib/a2c.js
+             * returns pathData array
+            */
+
+    function arcToBezier(p0, values, splitSegments = 1) {
+        const TAU = Math.PI * 2;
+        let [rx, ry, rotation, largeArcFlag, sweepFlag, x, y] = values;
+
+        if (rx === 0 || ry === 0) {
+            return []
+        }
+
+        let phi = rotation ? rotation * TAU / 360 : 0;
+        let sinphi = phi ? Math.sin(phi) : 0
+        let cosphi = phi ? Math.cos(phi) : 1
+        let pxp = cosphi * (p0.x - x) / 2 + sinphi * (p0.y - y) / 2
+        let pyp = -sinphi * (p0.x - x) / 2 + cosphi * (p0.y - y) / 2
+
+        if (pxp === 0 && pyp === 0) {
+            return []
+        }
+        rx = Math.abs(rx)
+        ry = Math.abs(ry)
+        let lambda =
+            pxp * pxp / (rx * rx) +
+            pyp * pyp / (ry * ry)
+        if (lambda > 1) {
+            let lambdaRt = Math.sqrt(lambda);
+            rx *= lambdaRt
+            ry *= lambdaRt
+        }
+
+        /** 
+         * parametrize arc to 
+         * get center point start and end angles
+         */
+        let rxsq = rx * rx,
+            rysq = rx === ry ? rxsq : ry * ry
+
+        let pxpsq = pxp * pxp,
+            pypsq = pyp * pyp
+        let radicant = (rxsq * rysq) - (rxsq * pypsq) - (rysq * pxpsq)
+
+        if (radicant <= 0) {
+            radicant = 0
+        } else {
+            radicant /= (rxsq * pypsq) + (rysq * pxpsq)
+            radicant = Math.sqrt(radicant) * (largeArcFlag === sweepFlag ? -1 : 1)
+        }
+
+        let centerxp = radicant ? radicant * rx / ry * pyp : 0
+        let centeryp = radicant ? radicant * -ry / rx * pxp : 0
+        let centerx = cosphi * centerxp - sinphi * centeryp + (p0.x + x) / 2
+        let centery = sinphi * centerxp + cosphi * centeryp + (p0.y + y) / 2
+
+        let vx1 = (pxp - centerxp) / rx
+        let vy1 = (pyp - centeryp) / ry
+        let vx2 = (-pxp - centerxp) / rx
+        let vy2 = (-pyp - centeryp) / ry
+
+        // get start and end angle
+        const vectorAngle = (ux, uy, vx, vy) => {
+            let dot = +(ux * vx + uy * vy).toFixed(9)
+            if (dot === 1 || dot === -1) {
+                return dot === 1 ? 0 : Math.PI
+            }
+            dot = dot > 1 ? 1 : (dot < -1 ? -1 : dot)
+            let sign = (ux * vy - uy * vx < 0) ? -1 : 1
+            return sign * Math.acos(dot);
+        }
+
+        let ang1 = vectorAngle(1, 0, vx1, vy1),
+            ang2 = vectorAngle(vx1, vy1, vx2, vy2)
+
+        if (sweepFlag === 0 && ang2 > 0) {
+            ang2 -= Math.PI * 2
+        }
+        else if (sweepFlag === 1 && ang2 < 0) {
+            ang2 += Math.PI * 2
+        }
+
+        let ratio = +(Math.abs(ang2) / (TAU / 4)).toFixed(0)
+
+        // increase segments for more accureate length calculations
+        let segments = ratio * splitSegments;
+        ang2 /= segments
+        let pathDataArc = [];
+
+
+        // If 90 degree circular arc, use a constant
+        // https://pomax.github.io/bezierinfo/#circles_cubic
+        // k=0.551784777779014
+        const angle90 = 1.5707963267948966;
+        const k = 0.551785
+        let a = ang2 === angle90 ? k :
+            (
+                ang2 === -angle90 ? -k : 4 / 3 * Math.tan(ang2 / 4)
+            );
+
+        let cos2 = ang2 ? Math.cos(ang2) : 1;
+        let sin2 = ang2 ? Math.sin(ang2) : 0;
+        let type = 'C'
+
+        const approxUnitArc = (ang1, ang2, a, cos2, sin2) => {
+            let x1 = ang1 != ang2 ? Math.cos(ang1) : cos2;
+            let y1 = ang1 != ang2 ? Math.sin(ang1) : sin2;
+            let x2 = Math.cos(ang1 + ang2);
+            let y2 = Math.sin(ang1 + ang2);
+
+            return [
+                { x: x1 - y1 * a, y: y1 + x1 * a },
+                { x: x2 + y2 * a, y: y2 - x2 * a },
+                { x: x2, y: y2 }
+            ];
+        }
+
+        for (let i = 0; i < segments; i++) {
+            let com = { type: type, values: [] }
+            let curve = approxUnitArc(ang1, ang2, a, cos2, sin2);
+
+            curve.forEach((pt) => {
+                let x = pt.x * rx
+                let y = pt.y * ry
+                com.values.push(cosphi * x - sinphi * y + centerx, sinphi * x + cosphi * y + centery)
+            })
+            pathDataArc.push(com);
+            ang1 += ang2
+        }
+
+        return pathDataArc;
+    }
+
+
     /**
      * serialize pathData array to 
      * d attribute string 
@@ -595,11 +616,11 @@ path.setAttribute('d', d)
 
             // round
             if (values.length && decimals > -1) {
-                values = values.map(val => { return  typeof val === 'number' ?  +val.toFixed(decimals) : val })
+                values = values.map(val => { return typeof val === 'number' ? +val.toFixed(decimals) : val })
             }
 
             // omit type for repeated commands
-            type = (com0.type === com.type && com.type.toLowerCase()!='m' && minify) ?
+            type = (com0.type === com.type && com.type.toLowerCase() != 'm' && minify) ?
                 " " : (
                     (com0.type === "m" && com.type === "l") ||
                     (com0.type === "M" && com.type === "l") ||
@@ -622,6 +643,8 @@ path.setAttribute('d', d)
 
     parsepathData.parsePathDataNormalized = parsePathDataNormalized;
     parsepathData.pathDataToD = pathDataToD;
+    parsepathData.arcToBezier = arcToBezier;
+
 
     return parsepathData;
 });
@@ -629,6 +652,6 @@ path.setAttribute('d', d)
 
 
 if (typeof module === 'undefined') {
-    var { parsePathDataNormalized, pathDataToD } = parsepathData;
+    var { parsePathDataNormalized, pathDataToD, arcToBezier } = parsepathData;
 }
 

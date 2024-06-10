@@ -659,13 +659,9 @@
 
                     if (comPrev.type !== 'H' && comPrev.type !== 'V') {
                         [val0R, prevXR, val1R, prevYR] = [val0R, prevXR, val1R, prevYR].map((val) => {
-                            console.log(val);
                             return +(val).toFixed(2);
                         });
                     }
-
-
-
 
                     if (prevYR == val1R && prevXR !== val0R) {
                         comShort = {

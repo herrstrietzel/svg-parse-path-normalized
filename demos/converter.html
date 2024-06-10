@@ -173,7 +173,7 @@
 
 
             /*
-            const { parsepathDataNormalized, pathDataToD } = parsepathData;
+            const { parsePathDataNormalized, pathDataToD } = parsepathData;
             const { convertPathData, quadratic2Cubic, roundPathData, pathDataToRelative, pathDataToAbsolute, pathDataToLonghands, pathDataToShorthands, pathDataToQuadratic, cubicToQuad, arcToBezier, pathDataToVerbose, convertArrayPathData, revertPathDataToArray, svgArcToCenterParam } = pathDataConvert;
             */
 
@@ -186,7 +186,7 @@
                 inputExample.append(option)
             }
 
-            let first = inputExample.options[2];
+            let first = inputExample.options[0];
             first.selected = true
             svgInput.value = samples[first.value]
 
@@ -281,7 +281,7 @@
                         // parse path
                         //let pathData = path.getPathData2()
                         let d = path.getAttribute('d')
-                        let pathData = parsepathDataNormalized(d, { normalize: false })
+                        let pathData = parsePathDataNormalized(d)
 
                         //scale
                         let scale = iV.scale
@@ -384,6 +384,8 @@
 
 
         let samples = {
+            'compound path from hell' : `
+        M50 0a50 50 0 110 100 50 50 0 110-100m0 30a20 20 0 110 40 20 20 0 110-40m0-10q12.42 0 21.21 8.79t8.79 21.21-8.79 21.21-21.21 8.79-21.21-8.79-8.79-21.21 8.79-21.21 21.21-8.79m-40-20a5 5 0 110 10 5 5 0 110-10m80 0a5 5 0 110 10 5 5 0 110-10m0 2.5a2.5 2.5 0 110 5 2.5 2.5 0 110-5m-45 42.5h10v10h-10zm-5-5h20v20h-20zm10-30c22.07 0 40 17.93 40 40s-17.93 40-40 40-40-17.93-40-40 17.93-40 40-40`,
             'cross': `M11 2
 H5
 V5
