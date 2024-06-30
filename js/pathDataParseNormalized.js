@@ -194,7 +194,7 @@ path.setAttribute('d', d)
             if (debug && comChunks[0].values.length < chunkSize) {
                 errors.push(
                     `${c}. command (${type}) has ${chunk.length
-                    }/${chunkSize} - ${chunk.length} value too few `
+                    }/${chunkSize} - ${chunk.length} values too few `
                 );
             }
 
@@ -205,9 +205,14 @@ path.setAttribute('d', d)
                     let chunk = values.slice(i, i + chunkSize);
                     comChunks.push({ type: typeImplicit, values: chunk });
                     if (debug && chunk.length !== chunkSize) {
+
+                        let overhead = Math.ceil(chunkSize/chunk.length);
+                        let ideal = overhead * chunkSize
+                        let feedback = chunk.length<ideal ? 'too few' : 'too many';
+                        let diff = Math.abs(chunk.length + chunkSize - ideal);
+
                         errors.push(
-                            `${i}. command (${type}) has ${chunk.length + chunkSize
-                            }/${chunkSize} - ${chunk.length} values too many `
+                            `${i}. command (${type}) has ${chunk.length + chunkSize} values - ${diff} values ${feedback} - should be ${overhead} commands with ${chunkSize} values per command`
                         );
                     }
                 }
@@ -361,7 +366,6 @@ path.setAttribute('d', d)
                      * convert arcs 
                      */
                     if ((arcToCubic && com.type === 'A')) {
-                        console.log('convert Arc');
                         p0 = { x: lastX, y: lastY }
                         if (typeRel === 'a') {
                             let comArc = arcToBezier(p0, com.values)
@@ -435,33 +439,33 @@ path.setAttribute('d', d)
         }
 
         return pathData;
+    }
 
 
-        /**
-         * convert quadratic commands to cubic
-         */
-        function quadratic2Cubic(p0, values) {
+    /**
+    * convert quadratic commands to cubic
+    */
+    function quadratic2Cubic(p0, values) {
 
-            let cp1 = {
-                x: p0.x + 2 / 3 * (values[0] - p0.x),
-                y: p0.y + 2 / 3 * (values[1] - p0.y)
-            }
-            let cp2 = {
-                x: values[2] + 2 / 3 * (values[0] - values[2]),
-                y: values[3] + 2 / 3 * (values[1] - values[3])
-            }
-
-            return ({ type: "C", values: [cp1.x, cp1.y, cp2.x, cp2.y, values[2], values[3]] });
+        let cp1 = {
+            x: p0.x + 2 / 3 * (values[0] - p0.x),
+            y: p0.y + 2 / 3 * (values[1] - p0.y)
         }
+        let cp2 = {
+            x: values[2] + 2 / 3 * (values[0] - values[2]),
+            y: values[3] + 2 / 3 * (values[1] - values[3])
+        }
+
+        return ({ type: "C", values: [cp1.x, cp1.y, cp2.x, cp2.y, values[2], values[3]] });
     }
 
 
     /** 
-             * convert arctocommands to cubic bezier
-             * based on puzrin's a2c.js
-             * https://github.com/fontello/svgpath/blob/master/lib/a2c.js
-             * returns pathData array
-            */
+    * convert arctocommands to cubic bezier
+    * based on puzrin's a2c.js
+    * https://github.com/fontello/svgpath/blob/master/lib/a2c.js
+    * returns pathData array
+    */
 
     function arcToBezier(p0, values, splitSegments = 1) {
         const TAU = Math.PI * 2;
@@ -492,9 +496,9 @@ path.setAttribute('d', d)
         }
 
         /** 
-         * parametrize arc to 
-         * get center point start and end angles
-         */
+        * parametrize arc to 
+        * get center point start and end angles
+        */
         let rxsq = rx * rx,
             rysq = rx === ry ? rxsq : ry * ry
 
@@ -542,15 +546,18 @@ path.setAttribute('d', d)
 
         let ratio = +(Math.abs(ang2) / (TAU / 4)).toFixed(0)
 
-        // increase segments for more accureate length calculations
+        // increase segments for more accurate length calculations
         let segments = ratio * splitSegments;
         ang2 /= segments
         let pathDataArc = [];
 
 
-        // If 90 degree circular arc, use a constant
-        // https://pomax.github.io/bezierinfo/#circles_cubic
-        // k=0.551784777779014
+        /**
+        * If 90 degree circular arc, use a constant
+        * https://pomax.github.io/bezierinfo/#circles_cubic
+        * k=0.551784777779014
+        */ 
+
         const angle90 = 1.5707963267948966;
         const k = 0.551785
         let a = ang2 === angle90 ? k :
@@ -591,6 +598,11 @@ path.setAttribute('d', d)
         return pathDataArc;
     }
 
+
+    // wrapper for stringified path data output
+    Array.prototype.toD = function (decimals = -1, minify = false) {
+        return pathDataToD(this, decimals, minify);
+    }
 
     /**
      * serialize pathData array to 

@@ -135,25 +135,10 @@
             <p id="pErrors"></p>
             <h3>PathData string input</h3>
             <textarea id="svgInput">
-              M3,7 
-              L13,7 
-              m-20,10 
-              l10,0 
-              V27 
-              H23 
-              v10 
-              h10
-              C 33,43 38,47 43,47 
-              c 0,5 5,10 10,10
-              S 63,67 63,67       
-              s -10,10 10,10
-              Q 50,50 73,57
-              q 20,-5 0,-10
-              T 70,40
-              t 0,-15
-              A 5, 10 45 10 40,20  
-              a5,5 20 01 -10,-10
-              Z  
+                M+50 0
+                a50 50 0 110 100 50 50 0 110-100
+                m0 30a20 20 0 110 40 20 20 0 110-40m0-10q12.42 0 21.21 8.79t8.79 21.21-8.79 21.21-21.21 8.79-21.21-8.79-8.79-21.21 8.79-21.21 21.21-8.79m-40-20a5 5 0 110 10 5 5 0 110-10m80 0a5 5 0 110 10 5 5 0 110-10m0 2.5a2.5 2.5 0 110 5 2.5 2.5 0 110-5m-45 42.5h10v10h-10zm-5-5h20v20h-20zm10-30c22.07 0 40 17.93 40 40
+                s-17.93 40-40 40-40-17.93-40-40 17.93-40 40-40
             
           </textarea>
 
@@ -187,12 +172,13 @@
         /**
          * 1. simple parsing 
          */
-        let pathData = parsepathDataNormalized("m 0 0 .5.5.5.5a 5 10 45 1040 20")
+        let pathData = parsePathDataNormalized("m 0 0 .5.5.5.5a 5 10 45 1040 20")
 
 
         //stringify to pathdata d string
         let minify = false;
-        let dNew = pathDataToD(pathData, 1, minify);
+        //let dNew = pathDataToD(pathData, 1, minify);
+        let dNew = pathData.toD(1, minify);
 
         console.log(pathData);
         console.log(dNew);
@@ -211,7 +197,7 @@
         /**
          * 4. Convert to verbose format
          */
-        let pathDataV = parsepathDataNormalized("m 0 0 .5.5.5.5a 5 10 45 1040 20", {normalize:false})
+        let pathDataV = parsePathDataNormalized("m 0 0 .5.5.5.5a 5 10 45 1040 20", {normalize:false})
         let pVerbose = JSON.stringify(pathDataToVerbose(pathDataV), null)
         console.log(pVerbose);
 
@@ -246,7 +232,7 @@
                 decimals: +inputDecimals.value,
                 debug: inputdebug.checked
             };
-            let pathData = parsepathDataNormalized(d, options);
+            let pathData = parsePathDataNormalized(d, options);
             let decimals = +inputDecimals.value;
             let minify = inputMinify.checked;
             let dN = pathDataToD(pathData, decimals, minify);

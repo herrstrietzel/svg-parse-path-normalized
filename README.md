@@ -1,8 +1,20 @@
 # svg-parse-path-normalized
 Parses path data from string including *fine-grained* normalisation and conversion options.  
 
-This library aims to provide a performant yet compact (~6KB/3KB minified; gzipped) parser – respecting all minified/shorthand notations as a basis for all kinds of custom path data manipulations.  
+This library aims to provide a robust and versatile yet *quite* compact (~6KB/3KB minified; gzipped) parser – respecting all minified/shorthand notations as a basis for all kinds of custom path data manipulations. Compatible with the [w3C SVGPathData interface draft](https://svgwg.org/specs/paths/#InterfaceSVGPathData) format recommendations.  
 
+## Yet another SVG path parser?
+While there is no shortage of excellent parsers – unfortunately, the same applies to rather **incomplete ones** often deployed in libraries due to their appealing lightweight codebase.  
+
+1. **Minified `A` arcto commands** quite often crash lightweight parsers since they can't unravell concatenated `largeArc`, `sweep` and final on path x values.  
+2. You may not need to load a full fledged SVG library but just a robust **foundation for your specific SVG path manipulations**.  
+3. **Finegrained normalization:** Normalize as little as possible: Usually you need at least absolute coordinates as well as "unshortened" ones. You may in some case need to convert quadratic béziers to cubics or `A` arcs to cubics – your choice – by default the parser will return the least destructive normalization.
+4. **Just parsing without normalization?** Fair enough, works as well e.g if you need a to scale the path data proportinally/keeping the aspect ratio.
+5. **Debugging** Sometimes you may also need some hints to what's wrong with your current path data – e.g if paths were sliced or concatenated incorrectly. The debugging option will return info about the problematic commands.
+
+
+
+## Table of content
 
 * [1. Basic functionality and helpers](#1-basic-functionality-and-helpers)
   + [1.1 Parse, normalize and stringify](#11-parse-normalize-and-stringify)
@@ -179,9 +191,24 @@ Set normalize to false to get the original (not normalized) pathdata – includi
 * decimals: rounds pathdata
 * minify: omits command letters for implicit or repeated commands and leading zeros
 
+You can stringify the path data to a `d` attribute (or CSS property) by a chained prototype method or the basic function like so:
+
 ```
-pathDataToD(pathData, decimals, minify) 
+let d = pathData.toD(decimals, minify)
 ```
+
+which is just a wrapper for the actual stringifying function.
+
+```
+let d = pathDataToD(pathData, decimals, minify) 
+```
+
+and eventually apply it like so:
+
+```
+path.setAttribute('d', d);
+```
+
 
 ----
 
