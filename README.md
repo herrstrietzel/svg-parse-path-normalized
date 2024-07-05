@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/svg-parse-path-normalized.svg)](https://www.npmjs.com/package/svg-parse-path-normalized)
+
+
 # svg-parse-path-normalized
 Parses path data from string including *fine-grained* normalisation and conversion options.  
 
