@@ -219,7 +219,7 @@ path.setAttribute('d', d)
             }
 
             // no relative, shorthand or arc command - return current 
-            if (normalize === false || (!hasRelative && !hasQuadratics && !hasShorthands && !hasArcs)) {
+            if (normalize === false || (!hasRelative && !hasQuadratics && !hasShorthands && !hasArcs && !lineToCubic)) {
                 comChunks.forEach((com) => {
                     pathData.push(com);
                 });
