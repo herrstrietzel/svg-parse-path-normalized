@@ -1338,24 +1338,25 @@
     * https://stackoverflow.com/questions/9017100/calculate-center-of-svg-arc/12329083#12329083
     */
 
-function svgArcToCenterParam(x1, y1, rx, ry, degree, fA, fS, x2, y2) {
+function svgArcToCenterParam(x1, y1, rx, ry, xAxisRotation, largeArc, sweep, x2, y2) {
+  
+  let {cos, sin, atan2, sqrt, abs, min, max, PI} = Math;
+
   // helper for angle calculation
   const getAngle = (cx, cy, x, y) => {
-    return Math.atan2(y - cy, x - cx);
+    return atan2(y - cy, x - cx);
   };
 
   // make sure rx, ry are positive
-  rx = Math.abs(rx);
-  ry = Math.abs(ry);
+  rx = abs(rx);
+  ry = abs(ry);
 
   /**
    * if rx===ry x-axis rotation is ignored
    * otherwise convert degrees to radians
    */
-  let phi = rx === ry ? 0 : (degree * Math.PI) / 180;
-  let cx, cy, startAngle, deltaAngle, endAngle;
-  let Pi = Math.PI;
-  let PIx2 = Pi * 2;
+  let phi = rx === ry ? 0 : (xAxisRotation * PI) / 180;
+  let cx, cy
 
   // create data object
   let arcData = {
@@ -1367,7 +1368,7 @@ function svgArcToCenterParam(x1, y1, rx, ry, degree, fA, fS, x2, y2) {
     startAngle: 0,
     endAngle: 0,
     deltaAngle: 0,
-    clockwise: fS
+    clockwise: sweep
   };
 
 
@@ -1375,14 +1376,15 @@ function svgArcToCenterParam(x1, y1, rx, ry, degree, fA, fS, x2, y2) {
     // invalid arguments
     throw Error("rx and ry can not be 0");
   }
+  
 
-  let s_phi = !phi ? 0 : Math.sin(phi);
-  let c_phi = !phi ? 1 : Math.cos(phi);
+  let s_phi = !phi ? 0 : sin(phi);
+  let c_phi = !phi ? 1 : cos(phi);
 
-  let hd_x = (x1 - x2) / 2; // half diff of x
-  let hd_y = (y1 - y2) / 2; // half diff of y
-  let hs_x = (x1 + x2) / 2; // half sum of x
-  let hs_y = (y1 + y2) / 2; // half sum of y
+  let hd_x = (x1 - x2) / 2; 
+  let hd_y = (y1 - y2) / 2; 
+  let hs_x = (x1 + x2) / 2; 
+  let hs_y = (y1 + y2) / 2;
 
   // F6.5.1
   let x1_ = !phi ? hd_x : c_phi * hd_x + s_phi * hd_y;
@@ -1392,8 +1394,8 @@ function svgArcToCenterParam(x1, y1, rx, ry, degree, fA, fS, x2, y2) {
   //   Step 3: Ensure radii are large enough
   let lambda = (x1_ * x1_) / (rx * rx) + (y1_ * y1_) / (ry * ry);
   if (lambda > 1) {
-    rx = rx * Math.sqrt(lambda);
-    ry = ry * Math.sqrt(lambda);
+    rx = rx * sqrt(lambda);
+    ry = ry * sqrt(lambda);
 
     // save real rx/ry
     arcData.rx = rx;
@@ -1407,8 +1409,8 @@ function svgArcToCenterParam(x1, y1, rx, ry, degree, fA, fS, x2, y2) {
   if (!sum_of_sq) {
     throw Error("start point can not be same as end point");
   }
-  let coe = Math.sqrt(Math.abs((rxry * rxry - sum_of_sq) / sum_of_sq));
-  if (fA == fS) {
+  let coe = sqrt(abs((rxry * rxry - sum_of_sq) / sum_of_sq));
+  if (largeArc == sweep) {
     coe = -coe;
   }
 
@@ -1428,10 +1430,16 @@ function svgArcToCenterParam(x1, y1, rx, ry, degree, fA, fS, x2, y2) {
    * calculate angles between center point and
    * commands starting and final on path point
    */
-  arcData.startAngle = getAngle(cx, cy, x1, y1);
-  arcData.endAngle = getAngle(cx, cy, x2, y2);
-  arcData.deltaAngle = arcData.endAngle - arcData.startAngle;
+  let startAngle = getAngle(cx, cy, x1, y1);
+  let endAngle = getAngle(cx, cy, x2, y2);
+  endAngle = (endAngle<0 && startAngle>0 && !largeArc) || (endAngle<startAngle && largeArc)  ? endAngle+PI*2 : endAngle;
+  let deltaAngle = endAngle - startAngle
 
+  //let deltaAngle = largeArc ? 360 + 
+  arcData.startAngle = startAngle;
+  arcData.endAngle = endAngle;
+  arcData.deltaAngle = deltaAngle;
+  
   return arcData;
 }
 
