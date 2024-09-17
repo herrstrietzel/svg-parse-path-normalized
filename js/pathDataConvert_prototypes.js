@@ -21,7 +21,7 @@ SVGGeometryElement.prototype.getPathDataConverted = function (options = {}) {
     switch (type) {
         case 'path':
             d = this.getAttribute("d");
-            pathData = parseDtoPathData(d);
+            pathData = parsePathDataNormalized(d);
             break;
 
         case 'rect':
