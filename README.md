@@ -9,9 +9,9 @@ This library aims to provide a robust and versatile yet *quite* compact (~6KB/3K
 ## Yet another SVG path parser?
 While there is no shortage of excellent parsers – unfortunately, the same applies to rather **incomplete ones** often deployed in libraries due to their appealing lightweight codebase.  
 
-1. **Minified `A` arcto commands** quite often crash lightweight parsers since they can't unravell concatenated `largeArc`, `sweep` and final on path x values.  
+1. **Minified `A` arcto commands** quite often lightweight parsers crash since they can't unravel concatenated `largeArc`, `sweep` and final on path x values.  
 2. You may not need to load a full fledged SVG library but just a robust **foundation for your specific SVG path manipulations**.  
-3. **Finegrained normalization:** Normalize as little as possible: Usually you need at least absolute coordinates as well as "unshortened" ones. You may in some case need to convert quadratic béziers to cubics or `A` arcs to cubics – your choice – by default the parser will return the least destructive normalization.
+3. **Finegrained normalization:** Normalize as little as possible: Usually, you need at least absolute coordinates as well as "unshortened" ones. You may in some case need to convert quadratic béziers to cubics or `A` arcs to cubics – your choice – by default the parser will return the least destructive normalization.
 4. **Just parsing without normalization?** Fair enough, works as well e.g if you need a to scale the path data proportinally/keeping the aspect ratio.
 5. **Debugging** Sometimes you may also need some hints to what's wrong with your current path data – e.g if paths were sliced or concatenated incorrectly. The debugging option will return info about the problematic commands.
 
@@ -37,6 +37,7 @@ While there is no shortage of excellent parsers – unfortunately, the same appl
     - [6.3.1 Array notation to pathdata](#631-array-notation-to-pathdata)
     - [6.3.2 pathDataToVerbose(pathData)](#632-pathdatatoverbosepathdata)
 * [7. Demos](#7-demos)
+* [8. Limitations](#8-limitations)
 * [Credits](#credits)
 
 
@@ -71,6 +72,21 @@ Provided by `pathDataConvert.js`: Useful to convert your manipulated/processed p
 
 
 ## 2. Usage parser
+
+**Update:** You can now use a more convenient function name for the parsing - the more verbose/clunky function still works. Since this parser aims to parse path data into a processable data array, "parsePathDataNormalized" is semantically more accurate – I hope you understand my naming delemma =) 
+
+```
+/* shorthand notation */
+let pathData = parseD(d, options)
+```
+
+```
+/* original notation */
+let pathData = parsePathDataNormalized(d, options)
+```
+Feel free to post an issue or write a post in the discussion if the recent update messed up anything.
+
+
 ### 2.1 Browser
 
 ``` lang-html
@@ -88,11 +104,22 @@ Provided by `pathDataConvert.js`: Useful to convert your manipulated/processed p
 
 //parse
 const d ="m 0 0 .5.5.5.5a 5 10 45 1040 20" ;
+
+/* shorthand notation */
+let pathData = parseD(d)
+
+/* verbose notation */
 let pathData = parsePathDataNormalized(d)
+
 
 //stringify to pathdata d string
 let minify = false;
-let dNew = pathDataToD(pathData, 1, minify);
+
+/* chainable notation */
+let dNew = pathData.toD(decimals, minify);
+
+/* classic function syntax */
+let dNew = pathDataToD(pathData, decimals, minify);
 
 console.log(pathData);
 console.log(dNew);
@@ -146,7 +173,6 @@ parsePathDataNormalized(d)
 
 The above example illustrates a problem with overly "lightweight" path parsers:  
 We need an extra check to "unravel" the `A` arcto's `largeArc` and `sweep` flags, which can be concatenated with the subsequent on-path x coordinate value. (See [basic example](https://codepen.io/herrstrietzel/pen/NWJpOYR))
-
 
 
 ## 4. All normalization options
@@ -331,6 +357,20 @@ let data = [
 * [convert commands to pretty much anything](https://codepen.io/herrstrietzel/pen/JjzvRjb) | (demos/converter.html)
 
 
+## 8. Limitations
+This library does only support SVG path data that's actually supported by browsers.  
+In other words: these "newer" commands are not included:
+* [Catmull-Rom curve commands](https://www.w3.org/TR/2015/WD-SVG2-20150409/paths.html#PathDataCatmullRomCommand)  
+* [Bearing commands](https://www.w3.org/TR/2015/WD-SVG2-20150409/paths.html#PathDataBearingCommands)
+
+... and this contextual closepath thing ...  
+
+Seriously, there's no point in implementing these features until they're implemented (see the sad story of SVG multi-line text... we'll probably never get it).   
+
+Especially the Catmull-ROM syntax extension is spooking around for more than 10 years without any results.
+Frankly, these features may never be included as they would bomb quite a few renderers and there are visualisation libraries to draw paths in a abstracted way. 
+
+
 
 ## Credits
 
@@ -338,6 +378,19 @@ let data = [
 * Dmitry Baranovskiy for (raphael.j/snap.svg) [pathToAbsolute/Relative functions](https://github.com/DmitryBaranovskiy/raphael/blob/master/raphael.js#L1848) 
 * Vitaly Puzrin (fontello) for the arc to cubic conversion method  [a2c.js](https://github.com/fontello/svgpath/blob/master/lib/a2c.js) and [cubic to quadratic approximation](https://github.com/fontello/cubic2quad/blob/master/test/cubic2quad.js)
 * Mike "POMAX" Kammermans for his great [A Primer on Bézier Curves](https://pomax.github.io/bezierinfo)
+
+## Related Repositories/projects
+All of these helpers are based on the path parser described above (or by-products - although they include stripped down versions for the sake of providing a standalone lib).
+
+* [svg-getpointatlength](https://github.com/herrstrietzel/svg-getpointatlength) – Calculates a path's length or points at length based on raw pathdata
+* [fix-path-directions](https://github.com/herrstrietzel/fix-path-directions) – Correct sub path directions in compound path for apps that don't support fill-rules or just reverse path directions (e.g for path animations)
+* [svg-pathdata-getbbox](https://github.com/herrstrietzel/svg-pathdata-getbbox) – Calculates a path bounding box based on its raw pathdata
+* [svg-transform](https://github.com/herrstrietzel/svg-transform) – A library to transform or de-transform/flatten svg paths
+
+
+
+
+
 
 
 
