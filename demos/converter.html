@@ -39,7 +39,7 @@
                 </label>
                 <label><input class="inputs" name="relativeAbsolute" type="radio" value="relative" checked> All
                     Relative</label>
-                <label><input class="inputs" name="relativeAbsolute" type="radio" value="unchanged" >
+                <label><input class="inputs" name="relativeAbsolute" type="radio" value="unchanged">
                     Unchanged</label>
 
             </fieldset>
@@ -68,7 +68,7 @@
                 </label>
                 <label><input class="inputs" name="toShorthands" type="radio" value="longhands"> All
                     longhands</label>
-                <label><input class="inputs" name="toShorthands" type="radio" value="unchanged" >
+                <label><input class="inputs" name="toShorthands" type="radio" value="unchanged">
                     Unchanged</label>
             </fieldset>
 
@@ -88,8 +88,8 @@
             <fieldset>
                 <legend>Output optimizations</legend>
                 <label><input class="inputs" name="minify" value="minify" type="radio" checked> Minify</label>
-                <label><input class="inputs" name="minify" value="prettify" type="radio" > Prettify</label>
-                <label><input class="inputs" name="minify" value="unchanged" type="radio" >
+                <label><input class="inputs" name="minify" value="prettify" type="radio"> Prettify</label>
+                <label><input class="inputs" name="minify" value="unchanged" type="radio">
                     unchanged</label>
                 <label><input class="inputs" name="crop" type="checkbox"> Crop and center</label>
                 <label><input class="inputs" name="showMarkers" type="checkbox"> Show markers</label>
@@ -156,7 +156,7 @@
     <script src="../js/pathDataConvert.js"></script>
     <script src="../js/pathDataConvert_prototypes.js"></script>
 
-    
+
     <script>
         window.addEventListener('DOMContentLoaded', (e) => {
 
@@ -245,24 +245,24 @@
                      * process paths
                      */
 
-                
-                   // convert shapes
-                   let shapes = svg.querySelectorAll('polygon, polyline, line, circle, ellipse, rect')
-                   if (iV.convertShapes && shapes.length) {
-                       shapes.forEach(shape => {
-                           shape.convertShapeToPath()
-                       })
-                   }
-                   
+
+                    // convert shapes
+                    let shapes = svg.querySelectorAll('polygon, polyline, line, circle, ellipse, rect')
+                    if (iV.convertShapes && shapes.length) {
+                        shapes.forEach(shape => {
+                            shape.convertShapeToPath()
+                        })
+                    }
+
 
                     let paths = svg.querySelectorAll('path')
-
                     paths.forEach(path => {
 
                         // parse path
                         //let pathData = path.getPathData2()
                         let d = path.getAttribute('d')
-                        let pathData = parsePathDataNormalized(d)
+                        //let pathData = parsePathDataNormalized(d)
+                        let pathData = parseD(d)
 
                         //scale
                         let scale = iV.scale
@@ -315,13 +315,13 @@
                          * stringify pathdata to attribute string
                          */
                         let minifyPathData = minify === 'minify' ? true : false;
-                        let dNew = pathDataToD(pathData, iV.decimals, minifyPathData)
+                        //let dNew = pathDataToD(pathData, iV.decimals, minifyPathData)
+                        let dNew = pathData.toD(iV.decimals, minifyPathData)
 
-                        //console.log(pathData);
 
                         // prettify
                         if (minify === 'prettify') {
-                            dNew = pathDataToD(pathData, decimals, false)
+                            dNew = pathData.toD(decimals, false)
                                 .replace(/([mlcsqtahvz])([\s\s]*)/gi, "\n$1 $2").
                                 replace(/(\d+)(\-)/g, "$1 $2").
                                 replace(/(\.)(?=(\d+\.\d+)+)(\d+)/g, "$1$3 ").
@@ -329,8 +329,6 @@
                                 replace(/([mlcsqtahvz])([\s\s]*)([mlcsqtahvz])/gi, "$1\n$3").
                                 trim();
                         }
-
-
                         path.setAttribute('d', dNew)
 
                     })
@@ -365,7 +363,7 @@
 
 
         let samples = {
-            'compound path from hell' : `
+            'compound path from hell': `
             <svg viewBox="0 0 100 100" overflow="visible"><path id="path" fill-rule="evenodd"  d="
         M50 0a50 50 0 110 100 50 50 0 110-100m0 30a20 20 0 110 40 20 20 0 110-40m0-10q12.42 0 21.21 8.79t8.79 21.21-8.79 21.21-21.21 8.79-21.21-8.79-8.79-21.21 8.79-21.21 21.21-8.79m-40-20a5 5 0 110 10 5 5 0 110-10m80 0a5 5 0 110 10 5 5 0 110-10m0 2.5a2.5 2.5 0 110 5 2.5 2.5 0 110-5m-45 42.5h10v10h-10zm-5-5h20v20h-20zm10-30c22.07 0 40 17.93 40 40s-17.93 40-40 40-40-17.93-40-40 17.93-40 40-40"/></svg>"
         `,
@@ -448,8 +446,8 @@ Z " />
             <path id="piechart" transform="scale(0.9) translate(130, 6)" d="M 10 0 A 10 10 0 1 1 1.34 15 L 10 10 z"
                 fill="red" class="segment segment-1 segment-class" id="segment-01" />
         </g>
-    </svg>`, 
-    'path_random' : `M  529 664  C  93 290  616 93  1942 385  C  1014 330  147 720  2059 70  C  1307 400  278 713  1686 691`
+    </svg>`,
+            'path_random': `M  529 664  C  93 290  616 93  1942 385  C  1014 330  147 720  2059 70  C  1307 400  278 713  1686 691`
         }
 
 

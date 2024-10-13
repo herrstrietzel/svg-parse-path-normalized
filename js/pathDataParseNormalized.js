@@ -206,9 +206,9 @@ path.setAttribute('d', d)
                     comChunks.push({ type: typeImplicit, values: chunk });
                     if (debug && chunk.length !== chunkSize) {
 
-                        let overhead = Math.ceil(chunkSize/chunk.length);
+                        let overhead = Math.ceil(chunkSize / chunk.length);
                         let ideal = overhead * chunkSize
-                        let feedback = chunk.length<ideal ? 'too few' : 'too many';
+                        let feedback = chunk.length < ideal ? 'too few' : 'too many';
                         let diff = Math.abs(chunk.length + chunkSize - ideal);
 
                         errors.push(
@@ -441,7 +441,6 @@ path.setAttribute('d', d)
         return pathData;
     }
 
-
     /**
     * convert quadratic commands to cubic
     */
@@ -556,7 +555,7 @@ path.setAttribute('d', d)
         * If 90 degree circular arc, use a constant
         * https://pomax.github.io/bezierinfo/#circles_cubic
         * k=0.551784777779014
-        */ 
+        */
 
         const angle90 = 1.5707963267948966;
         const k = 0.551785
@@ -653,6 +652,8 @@ path.setAttribute('d', d)
         return d;
     }
 
+    // shorthand/wrapper for parsing
+    parsepathData.parseD = parsePathDataNormalized;
     parsepathData.parsePathDataNormalized = parsePathDataNormalized;
     parsepathData.pathDataToD = pathDataToD;
     parsepathData.arcToBezier = arcToBezier;
@@ -664,6 +665,6 @@ path.setAttribute('d', d)
 
 
 if (typeof module === 'undefined') {
-    var { parsePathDataNormalized, pathDataToD, arcToBezier } = parsepathData;
+    var { parsePathDataNormalized, parseD, pathDataToD, arcToBezier } = parsepathData;
 }
 
