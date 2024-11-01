@@ -543,7 +543,7 @@ path.setAttribute('d', d)
             ang2 += Math.PI * 2
         }
 
-        let ratio = +(Math.abs(ang2) / (TAU / 4)).toFixed(0)
+        let ratio = +(Math.abs(ang2) / (TAU / 4)).toFixed(0) || 1
 
         // increase segments for more accurate length calculations
         let segments = ratio * splitSegments;
