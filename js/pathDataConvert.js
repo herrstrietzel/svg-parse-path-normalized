@@ -227,7 +227,7 @@
             // parametrized arc rx and ry values
             if (arcParam && typeRel === 'a') {
                 let arcData = svgArcToCenterParam(lastX, lastY, values[0], values[1], values[2], values[3], values[4], values[5], values[6]);
-                console.log(arcData);
+                //console.log(arcData);
                 com.values = [arcData.rx, arcData.ry, values[2], values[3], values[4], values[5], values[6]]
             }
 
@@ -1163,7 +1163,10 @@
             ang2 += Math.PI * 2
         }
 
-        let ratio = +(Math.abs(ang2) / (TAU / 4)).toFixed(0)
+
+        //ratio must be at least 1
+        let ratio = +(Math.abs(ang2) / (TAU / 4)).toFixed(0) || 1
+
 
         // increase segments for more accureate length calculations
         let segments = ratio * splitSegments;
