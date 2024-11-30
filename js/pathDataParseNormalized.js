@@ -324,6 +324,12 @@ path.setAttribute('d', d)
                     else {
                         offX = 0;
                         offY = 0;
+
+                        // set new M 
+                        if(type==='M'){
+                            M = { x: values[0], y: values[1]};
+                        }
+
                     }
 
                     /**
