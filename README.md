@@ -1,4 +1,4 @@
-[![npm version](https://img.shields.io/npm/v/svg-parse-path-normalized.svg)](https://www.npmjs.com/package/svg-parse-path-normalized)[![gzipped size](https://img.shields.io/bundlephobia/minzip/svg-parse-path-normalized)](https://bundlephobia.com/result?p=svg-parse-path-normalized)
+[![npm version](https://img.shields.io/npm/v/svg-parse-path-normalized.svg)](https://www.npmjs.com/package/svg-parse-path-normalized) [![gzipped size](https://img.shields.io/bundlephobia/minzip/svg-parse-path-normalized)](https://bundlephobia.com/result?p=svg-parse-path-normalized)
 [![minified size](https://img.shields.io/bundlephobia/min/svg-parse-path-normalized)](https://bundlephobia.com/result?p=svg-parse-path-normalized)
 [![license](https://img.shields.io/npm/l/svg-parse-path-normalized)](https://www.npmjs.com/package/svg-parse-path-normalized)
 [![CDN](https://img.shields.io/badge/CDN-jsDelivr-E84D3D?style=flat)](https://cdn.jsdelivr.net/npm/svg-parse-path-normalized@latest/js/pathDataParseNormalized.min.js)
