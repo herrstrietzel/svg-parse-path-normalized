@@ -36,8 +36,9 @@ While there is no shortage of excellent parsers – unfortunately, the same appl
   + [6.3 Convert pathdata structure](#63-convert-pathdata-structure)
     - [6.3.1 Array notation to pathdata](#631-array-notation-to-pathdata)
     - [6.3.2 pathDataToVerbose(pathData)](#632-pathdatatoverbosepathdata)
-* [7. Demos](#7-demos)
-* [8. Limitations](#8-limitations)
+* [7. Changelog](#7-changelog)
+* [8. Demos](#8-demos)
+* [9. Limitations](#9-limitations)
 * [Credits](#credits)
 
 
@@ -351,17 +352,22 @@ let data = [
 ];
 ```
 
-## Changelog
+## 7. Changelog
 * 1.1.0 fixes a rare parsing issue where 'M' commands were omitted (e.g `z` followed by another drawing command than `M` – unfortunately valid). See updated demo with "path-from-hell3".
 
+### Downgrading
+In case you encounter any problems with the latest versions you can just load a previous one.  
+See npm repo for all [existing versions](https://www.npmjs.com/package/svg-parse-path-normalized?activeTab=versions)
+ 
 
-## 7. Demos 
+
+## 8. Demos 
 * [parse pathdata with different normalization options](https://codepen.io/herrstrietzel/pen/NWJpOYR) (demos/index.html)  
 * `pathDataConvert.js` as a [addon/plugin for `path.getPathData()`](https://codepen.io/herrstrietzel/pen/dyreNep) (demos/getPathDataAddon.html)
 * [convert commands to pretty much anything](https://codepen.io/herrstrietzel/pen/JjzvRjb) | (demos/converter.html)
 
 
-## 8. Limitations
+## 9. Limitations
 This library does only support SVG path data that's actually supported by browsers.  
 In other words: these "newer" commands are not included:
 * [Catmull-Rom curve commands](https://www.w3.org/TR/2015/WD-SVG2-20150409/paths.html#PathDataCatmullRomCommand)  
