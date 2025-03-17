@@ -117,7 +117,7 @@ path.setAttribute('d', d)
         ];
 
         // offsets for absolute conversion
-        let offX, offY, lastX, lastY, M;
+        let offX, offY, lastX, lastY, M, lastType='m';
 
 
         // no M starting command – return dummy pathdata
@@ -217,6 +217,18 @@ path.setAttribute('d', d)
                     }
                 }
             }
+
+
+            //search for omited M commands
+            for(let i=0, len=comChunks.length; i<len; i++){
+                let com=comChunks[i];
+                if(com.type.toLowerCase()!=='m' && lastType==='z'){
+                    hasRelative=true;
+                    comChunks.splice(i, 0, { type: 'M', values: [M.x, M.y] });
+                    i++;
+                }
+            }
+
 
             // no relative, shorthand or arc command - return current 
             if (normalize === false || (!hasRelative && !hasQuadratics && !hasShorthands && !hasArcs && !lineToCubic)) {
@@ -382,6 +394,10 @@ path.setAttribute('d', d)
                     }
 
                     else {
+
+                        // update last type for omitted M commands
+                        lastType=type.toLowerCase();
+
                         // add to pathData array
                         pathData.push(com);
                     }

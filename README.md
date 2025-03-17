@@ -351,6 +351,10 @@ let data = [
 ];
 ```
 
+## Changelog
+* 1.1.0 fixes a rare parsing issue where 'M' commands were omitted (e.g `z` followed by another drawing command than `M` – unfortunately valid). See updated demo with "path-from-hell3".
+
+
 ## 7. Demos 
 * [parse pathdata with different normalization options](https://codepen.io/herrstrietzel/pen/NWJpOYR) (demos/index.html)  
 * `pathDataConvert.js` as a [addon/plugin for `path.getPathData()`](https://codepen.io/herrstrietzel/pen/dyreNep) (demos/getPathDataAddon.html)
